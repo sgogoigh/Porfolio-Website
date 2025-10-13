@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  :root {
+    --background: 0 0% 7.1%; /* #121212 */
+    --foreground: 0 0% 98%;
+    
+    --card: 0 0% 9%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 180 100% 50%; /* #00FFFF */
+    --primary-foreground: 180 100% 10%;
+
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+
+    --accent: 285 82% 69%; /* #D070F0 */
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 14.9%;
+    --ring: 180 100% 50%;
+    --radius: 0.5rem;
+    --header-height: 4rem; /* Default value */
+  }
+
+  .dark {
+    --background: 0 0% 7.1%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 180 100% 50%;
+    --primary-foreground: 180 100% 10%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 285 82% 69%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 20%;
+    --input: 0 0% 14.9%;
+    --ring: 180 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    background-image: linear-gradient(to right, theme(colors.white / 2%) 1px, transparent 1px), 
+                      linear-gradient(to bottom, theme(colors.white / 2%) 1px, transparent 1px),
+                      radial-gradient(ellipse 80% 50% at 50% -20%, hsl(var(--primary) / 0.25), transparent),
+                      radial-gradient(ellipse 50% 80% at -20% 50%, hsl(var(--accent) / 0.2), transparent),
+                      radial-gradient(ellipse 50% 80% at 120% 50%, hsl(var(--primary) / 0.2), transparent),
+                      radial-gradient(ellipse 80% 50% at 50% 120%, hsl(var(--accent) / 0.25), transparent);
+    background-size: 40px 40px, 40px 40px, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+  }
+
+  html, body {
+    overflow: hidden;
+    height: 100%;
+  }
+
+  section {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+  
+  .section-hidden {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .section-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+}
+
+@layer utilities {
+  .main-scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .main-scrollbar-hide {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
