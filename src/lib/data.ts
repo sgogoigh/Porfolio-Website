@@ -9,16 +9,16 @@ export const sections = [
 
 export const socialLinks = [
   { id: 'email', label: 'Email', url: 'mailto:sgogoi2004@gmail.com' },
-  { id: 'linkedin', label: 'LinkedIn', url: 'https://linkedin.com/in/sunny-gogoi' },
-  { id: 'github', label: 'GitHub', url: 'https://github.com/sunnygogoi' },
+  { id: 'linkedin', label: 'LinkedIn', url: 'https://linkedin.com/in/sunnygogoi' },
+  { id: 'github', label: 'GitHub', url: 'https://github.com/sgogoigh' },
   { id: 'twitter', label: 'Twitter', url: 'https://twitter.com/sunnygogoi' },
 ];
 
 export const education = {
-  college: 'Placeholder University',
-  gradYear: '2025',
-  degree: 'B.Tech in Computer Science & Engineering',
-  cgpa: '9.0/10.0',
+  college: 'Vellore Institute of Technology, Vellore',
+  gradYear: 'Graduation: 2026',
+  degree: 'B.Tech Computer Science & Engineering',
+  cgpa: 'CGPA: 9.09',
 };
 
 export const techStack = [
@@ -41,15 +41,15 @@ export const techStack = [
 
 export const experience = [
   {
-    company: 'Tech Solutions Inc.',
-    role: 'Software Development Intern',
-    duration: '05/2024 - 08/2024',
+    company: 'Quintinno Labs',
+    role: 'Research & Data Intern',
+    duration: 'Jun 2025 - Jul 2025',
     description: 'Developed and maintained features for a large-scale web application using React and TypeScript, improving performance by 15%.',
   },
   {
-    company: 'AI Innovations Lab',
-    role: 'Machine Learning Research Intern',
-    duration: '01/2023 - 04/2023',
+    company: 'Ashva Wearable Technologies',
+    role: 'Technical Content Writer',
+    duration: 'Sept 2022 - Jan 2024',
     description: 'Implemented novel computer vision models with PyTorch, achieving a 5% increase in accuracy on benchmark datasets.',
   },
 ];
@@ -123,15 +123,19 @@ export const projects = [
 
 export const certifications = [
   {
-    name: 'AWS Certified Cloud Practitioner',
+    name: 'Oracle Generative AI Professional',
     verifyUrl: '#',
   },
   {
-    name: 'TensorFlow Developer Certificate',
+    name: 'Oracle OCI Vector Search Professional',
     verifyUrl: '#',
   },
   {
-    name: 'Certified Professional in C++',
+    name: 'CS50 Introduction to Databases with SQL',
+    verifyUrl: '#',
+  },
+  {
+    name: 'Introduction to MCP Servers with Claude',
     verifyUrl: '#',
   },
 ];
