@@ -1,4 +1,4 @@
-# **App Name**: GogoiFolio
+# **App Name**: Sunny's Porfolio
 
 ## Core Features:
 

@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils';
 import { Toaster } from "@/components/ui/toaster"
 
 export const metadata: Metadata = {
-  title: 'GogoiFolio | Sunny Gogoi',
+  title: 'Sunny Gogoi',
   description: 'Portfolio of Sunny Gogoi, a Software Developer, Machine Learning Engineer, and Data Scientist.',
 };
 
