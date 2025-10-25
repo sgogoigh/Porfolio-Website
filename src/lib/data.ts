@@ -11,7 +11,7 @@ export const socialLinks = [
   { id: 'email', label: 'Email', url: 'mailto:sgogoi2004@gmail.com' },
   { id: 'linkedin', label: 'LinkedIn', url: 'https://linkedin.com/in/sunnygogoi' },
   { id: 'github', label: 'GitHub', url: 'https://github.com/sgogoigh' },
-  { id: 'twitter', label: 'Twitter', url: 'https://twitter.com/sunnygogoi' },
+  { id: 'twitter', label: 'Twitter', url: 'https://x.com/sunnygogoi' },
 ];
 
 export const education = {
@@ -44,13 +44,13 @@ export const experience = [
     company: 'Quintinno Labs',
     role: 'Research & Data Intern',
     duration: 'Jun 2025 - Jul 2025',
-    description: 'Developed and maintained features for a large-scale web application using React and TypeScript, improving performance by 15%.',
+    description: 'Developed a conceptual model of an automated EV charging robot, Evaluated LSTM models in Smart Battery Management System (BMS) for State of Charge (SoC) calculations',
   },
   {
     company: 'Ashva Wearable Technologies',
     role: 'Technical Content Writer',
     duration: 'Sept 2022 - Jan 2024',
-    description: 'Implemented novel computer vision models with PyTorch, achieving a 5% increase in accuracy on benchmark datasets.',
+    description: 'Summarized 75+ research papers and articles to evaluate future of data-driven physiotherapy equipment in Indian healthcare',
   },
 ];
 
