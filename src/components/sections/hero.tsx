@@ -73,7 +73,7 @@ export default function Hero() {
         </div>
         
         <Button asChild>
-          <a href="https://drive.google.com/file/d/1sMwlQbFD9UwWJQOMQ7dbb_8zanFmy7Yi/view?usp=sharing" download="Sunny_Gogoi_Resume.pdf">
+          <a href="https://drive.google.com/file/d/1r_AAg1DcNYFeDMLvcFQ9hdAF699NlXqV/view?usp=drive_link" download="Sunny_Gogoi_Resume.pdf">
             <Download className="mr-2 h-4 w-4" />
             Download Resume
           </a>
