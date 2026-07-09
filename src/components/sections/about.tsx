@@ -26,7 +26,7 @@ export default function About() {
       <div className="md:col-span-6 flex flex-col gap-8">
         <h2 className="font-headline text-4xl md:text-5xl font-bold text-center">About Me</h2>
         <p className="text-muted-foreground text-center md:text-left">
-          I'm a passionate developer and data enthusiast with a knack for building efficient, scalable solutions. I thrive on turning complex problems into elegant software and uncovering insights from data to drive decision-making.
+          I'm a passionate AI & ML Engineer with a knack for building efficient, scalable solutions. I thrive on turning complex problems into elegant software and uncovering insights from data to drive decision-making.
         </p>
 
         <Card className="bg-card/50 border-white/10">

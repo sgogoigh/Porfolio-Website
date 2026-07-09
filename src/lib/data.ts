@@ -18,28 +18,30 @@ export const education = {
   college: 'Vellore Institute of Technology, Vellore',
   gradYear: 'Graduation: 2026',
   degree: 'B.Tech Computer Science & Engineering',
-  cgpa: 'CGPA: 9.1 / 10',
+  cgpa: 'CGPA: 9.13 / 10',
 };
 
 export const techStack = [
   { name: 'Python', icon: 'PythonIcon' },
-  { name: 'Java', icon: 'JavaIcon' },
   { name: 'SQL', icon: 'SqlIcon' },
-  { name: 'C', icon: 'CIcon' },
-  { name: 'C++', icon: 'CppIcon' },
   { name: 'R', icon: 'RIcon' },
-  { name: 'JavaScript', icon: 'JavaScriptIcon' },
-  { name: 'TypeScript', icon: 'TypeScriptIcon' },
-  { name: 'React', icon: 'ReactIcon' },
   { name: 'PyTorch', icon: 'PyTorchIcon' },
   { name: 'TensorFlow', icon: 'TensorFlowIcon' },
   { name: 'FastAPI', icon: 'FastApiIcon' },
   { name: 'Docker', icon: 'DockerIcon' },
   { name: 'Git', icon: 'GitIcon' },
   { name: 'AWS', icon: 'AwsIcon' },
+  { name: 'Hugging Face', icon: 'HuggingFaceIcon' },
+  { name: 'Redis', icon: 'RedisIcon' },
 ];
 
 export const experience = [
+  {
+    company: 'Matrice AI',
+    role: 'Machine Learning Engineer - Apps & Analytics',
+    duration: 'Jan 2026 - Present',
+    description: 'Developed the Matrice AI Analytics Platform for real-time camera inferencing; created & mantainer 10 computer vision detection apps with automated benchmarking workflows',
+  },
   {
     company: 'Quintinno Labs',
     role: 'Research & Data Intern',
