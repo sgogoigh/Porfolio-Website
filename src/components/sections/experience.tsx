@@ -17,9 +17,11 @@ const ExperienceItem = ({ item }: { item: typeof experience[0] }) => {
         <p className="text-primary font-semibold mt-1">{item.role}</p>
         
         {isExpanded && (
-            <p className="text-sm text-muted-foreground mt-3 transition-all duration-300">
-                {item.description}
-            </p>
+            <ul className="text-sm text-muted-foreground mt-3 space-y-2 list-disc list-outside pl-4 transition-all duration-300">
+                {item.achievements.map((achievement, i) => (
+                  <li key={i}>{achievement}</li>
+                ))}
+            </ul>
         )}
 
         <Button variant="link" size="sm" className="p-0 mt-3 h-auto text-xs opacity-75" onClick={() => setIsExpanded(!isExpanded)}>

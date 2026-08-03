@@ -47,7 +47,7 @@ export const RIcon = ({ className }: IconProps) => (
 export const JavaScriptIcon = ({ className }: IconProps) => (
   <svg className={className} role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <title>JavaScript</title>
-    <path d="M0 0h24v24H0V0zm22.034 18.277c-.153-1.31-1.028-2.4-2.62-2.4-.84 0-1.4.385-1.803.974-.539.718-.77 1.666-.77 2.82 0 1.512.667 2.64 2.256 2.64 1.385 0 2.205-1.025 2.205-2.23 0-.308-.025-.513-.077-.718zm-4.743-1.513c0-1.872 1.41-3.154 3.333-3.154 1.41 0 2.385.744 2.82 1.821l-1.923.923c-.205-.513-.615-.846-1.128-.846-.846 0-1.41.64-1.41 1.666 0 .308.05.616.154.872H22.11v1.59h-4.949c.025.59.05.948.05 1.307 0 1.616-1.026 2.82-2.616 2.82-1.564 0-2.59-1.103-2.59-2.769 0-1.667.975-2.846 2.513-2.846.385 0 .744.077 1.05.205l.513-1.538c-.436-.18-.948-.282-1.59-.282-1.743 0-2.922 1.23-2.922 3.05 0 1.744 1.102 3.128 2.974 3.128 1.461 0 2.487-.795 2.897-1.948l1.923.949c-.64 1.744-2.128 2.718-4.82 2.718-2.949 0-4.923-1.974-4.923-5.077 0-3.077 2.026-4.948 4.82-4.948 1.154 0 2.23.41 3.026 1.128l-1.46 1.41c-.283-.307-.667-.487-1.129-.487-1.00_0-1.769.743-1.769 1.846z" fill="#F7DF1E"/>
+    <path d="M0 0h24v24H0V0zm22.034 18.277c-.153-1.31-1.028-2.4-2.62-2.4-.84 0-1.4.385-1.803.974-.539.718-.77 1.666-.77 2.82 0 1.512.667 2.64 2.256 2.64 1.385 0 2.205-1.025 2.205-2.23 0-.308-.025-.513-.077-.718zm-4.743-1.513c0-1.872 1.41-3.154 3.333-3.154 1.41 0 2.385.744 2.82 1.821l-1.923.923c-.205-.513-.615-.846-1.128-.846-.846 0-1.41.64-1.41 1.666 0 .308.05.616.154.872H22.11v1.59h-4.949c.025.59.05.948.05 1.307 0 1.616-1.026 2.82-2.616 2.82-1.564 0-2.59-1.103-2.59-2.769 0-1.667.975-2.846 2.513-2.846.385 0 .744.077 1.05.205l.513-1.538c-.436-.18-.948-.282-1.59-.282-1.743 0-2.922 1.23-2.922 3.05 0 1.744 1.102 3.128 2.974 3.128 1.461 0 2.487-.795 2.897-1.948l1.923.949c-.64 1.744-2.128 2.718-4.82 2.718-2.949 0-4.923-1.974-4.923-5.077 0-3.077 2.026-4.948 4.82-4.948 1.154 0 2.23.41 3.026 1.128l-1.46 1.41c-.283-.307-.667-.487-1.129-.487-1.0 0-1.769.743-1.769 1.846z" fill="#F7DF1E"/>
   </svg>
 );
 
@@ -103,6 +103,134 @@ export const GitIcon = ({ className }: IconProps) => (
 export const AwsIcon = ({ className }: IconProps) => (
   <svg className={className} role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <title>Amazon Web Services</title>
-    <path d="M14.42.33a.6.6 0 0 0-.27.1L12 1.63a.6.6 0 0 0-.25.5v3.1c0 .24.16.45.39.54l1.8.7c.2.08.43-.02.53-.22L16.2 3.8a.6.6 0 0 0-.15-.65L14.7.43a.6.6 0 0 0-.28-.1zm-4.84 0a.6.6 0 0 0-.28.1l-1.35.72a.6.6 0 0 0-.15.65l1.73 2.95c.1.2.33.3.53.22l1.8-.7c.23-.09.39-.3.39-.54V2.13a.6.6 0 0 0-.25-.5L9.85.43a.6.6 0 0 0-.27-.1zm.55 6.45L2.1 4.52a.6.6 0 0 0-.64.12l-.9.9c-.18.18-.18.46 0 .64l3.1 3.1a.6.6 0 0 0 .64 0l.9-.9c.18-.18.18-.46 0-.64l-2.03-2.03.9-.9c.18-.18.46-.18.64 0l2.02 2.03-2.12 3.68c-.1.18-.04.42.13.54l3.85 2.5a.6.6 0 0 0 .6 0l3.86-2.5a.6.6 0 0 0 .12-.54L10.13 6.78zM21.9 4.52l-7.03 2.26.13.23c.18.3.55.4.85.24l7.1-2.3a.6.6 0 0 0 .35-1L22.4 3.4a.6.6 0 0 0-.7-.16l-1.07.28c.03-.05.04-.1.04-.16a.6.6 0 0 0-1.1-..42l-.4.68.22.06c.3.08.4.45.24.85l-1.3 2.27c-.16.28.02.64.32.7l1.3.3c.3.06.6-.1.66-.4l2.6-4.5c.08-.14.04-.32-.08-.42zm-12.24 9.1c-2.37.58-3.8 2.6-3.8 4.98s1.6 4.3 4.14 4.3c2.96 0 4.96-2.4 4.45-5.32a5.5 5.5 0 0 0-4.8-3.96zm-.43 7.26c-.9 0-1.55-.58-1.55-1.42s.65-1.42 1.55-1.42 1.55.58 1.55 1.42-.65 1.42-1.55 1.42zm11.77-1.42c0 2.4-1.6 4.3-4.14 4.3s-4.14-1.9-4.14-4.3 1.6-4.3 4.14-4.3 4.14 1.9 4.14 4.3zm-4.14-.02c-.9 0-1.55-.58-1.55-1.42s.65-1.42 1.55-1.42 1.55.58 1.55 1.42-.65 1.42-1.55 1.42z" fill="#FF9900"/>
+    <path d="M14.42.33a.6.6 0 0 0-.27.1L12 1.63a.6.6 0 0 0-.25.5v3.1c0 .24.16.45.39.54l1.8.7c.2.08.43-.02.53-.22L16.2 3.8a.6.6 0 0 0-.15-.65L14.7.43a.6.6 0 0 0-.28-.1zm-4.84 0a.6.6 0 0 0-.28.1l-1.35.72a.6.6 0 0 0-.15.65l1.73 2.95c.1.2.33.3.53.22l1.8-.7c.23-.09.39-.3.39-.54V2.13a.6.6 0 0 0-.25-.5L9.85.43a.6.6 0 0 0-.27-.1zm.55 6.45L2.1 4.52a.6.6 0 0 0-.64.12l-.9.9c-.18.18-.18.46 0 .64l3.1 3.1a.6.6 0 0 0 .64 0l.9-.9c.18-.18.18-.46 0-.64l-2.03-2.03.9-.9c.18-.18.46-.18.64 0l2.02 2.03-2.12 3.68c-.1.18-.04.42.13.54l3.85 2.5a.6.6 0 0 0 .6 0l3.86-2.5a.6.6 0 0 0 .12-.54L10.13 6.78zM21.9 4.52l-7.03 2.26.13.23c.18.3.55.4.85.24l7.1-2.3a.6.6 0 0 0 .35-1L22.4 3.4a.6.6 0 0 0-.7-.16l-1.07.28c.03-.05.04-.1.04-.16a.6.6 0 0 0-1.1-.42l-.4.68.22.06c.3.08.4.45.24.85l-1.3 2.27c-.16.28.02.64.32.7l1.3.3c.3.06.6-.1.66-.4l2.6-4.5c.08-.14.04-.32-.08-.42zm-12.24 9.1c-2.37.58-3.8 2.6-3.8 4.98s1.6 4.3 4.14 4.3c2.96 0 4.96-2.4 4.45-5.32a5.5 5.5 0 0 0-4.8-3.96zm-.43 7.26c-.9 0-1.55-.58-1.55-1.42s.65-1.42 1.55-1.42 1.55.58 1.55 1.42-.65 1.42-1.55 1.42zm11.77-1.42c0 2.4-1.6 4.3-4.14 4.3s-4.14-1.9-4.14-4.3 1.6-4.3 4.14-4.3 4.14 1.9 4.14 4.3zm-4.14-.02c-.9 0-1.55-.58-1.55-1.42s.65-1.42 1.55-1.42 1.55.58 1.55 1.42-.65 1.42-1.55 1.42z" fill="#FF9900"/>
 </svg>
+);
+
+export const KerasIcon = ({ className }: IconProps) => (
+  <svg className={className} role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <title>Keras</title>
+    <circle cx="12" cy="12" r="11.5" fill="none" stroke="#D00000" strokeWidth="1" />
+    <path d="M6 4.8h2.1v7.2l5.4-6.5h2.6L11 11.6l5.4 7.6h-2.6l-4.2-6-1.5 1.7v4.3H6z" fill="#D00000" />
+  </svg>
+);
+
+export const ScikitLearnIcon = ({ className }: IconProps) => (
+  <svg className={className} role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <title>scikit-learn</title>
+    <path d="M8.2 2.4A5.6 5.6 0 002.4 8.2c0 2 1 3.8 2.5 4.8a5.6 5.6 0 004 9.6 5.6 5.6 0 005.5-4.5 5.6 5.6 0 004.2-9.3 5.6 5.6 0 00-8.9-6.7A5.6 5.6 0 008.2 2.4zm.4 3.2a2.4 2.4 0 110 4.8 2.4 2.4 0 010-4.8zm6.4 6.4a2.4 2.4 0 110 4.8 2.4 2.4 0 010-4.8z" fill="#F89939" />
+    <circle cx="8.6" cy="8" r="1.6" fill="#29ABE2" />
+    <circle cx="15" cy="14.4" r="1.6" fill="#29ABE2" />
+  </svg>
+);
+
+export const OpenCvIcon = ({ className }: IconProps) => (
+  <svg className={className} role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <title>OpenCV</title>
+    <circle cx="7.5" cy="8" r="4.2" fill="none" stroke="#EE3F36" strokeWidth="2.4" />
+    <circle cx="16.5" cy="8" r="4.2" fill="none" stroke="#68A63B" strokeWidth="2.4" />
+    <circle cx="12" cy="16" r="4.2" fill="none" stroke="#1783C6" strokeWidth="2.4" />
+  </svg>
+);
+
+export const YoloIcon = ({ className }: IconProps) => (
+  <svg className={className} role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <title>YOLO Object Detection</title>
+    <rect x="2" y="4" width="20" height="16" rx="2" fill="none" stroke="#7C3AED" strokeWidth="1.4" />
+    <rect x="5.5" y="7.5" width="7" height="6" rx="0.6" fill="none" stroke="#7C3AED" strokeWidth="1.4" />
+    <circle cx="16.5" cy="13" r="2.4" fill="#7C3AED" />
+  </svg>
+);
+
+export const LangChainIcon = ({ className }: IconProps) => (
+  <svg className={className} role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <title>LangChain</title>
+    <circle cx="7" cy="7" r="4" fill="none" stroke="#1C3C34" strokeWidth="2.2" />
+    <circle cx="17" cy="17" r="4" fill="none" stroke="#1C3C34" strokeWidth="2.2" />
+    <path d="M9.8 9.8l4.4 4.4" stroke="#1C3C34" strokeWidth="2.2" fill="none" />
+  </svg>
+);
+
+export const HuggingFaceIcon = ({ className }: IconProps) => (
+  <svg className={className} role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <title>Hugging Face</title>
+    <circle cx="12" cy="12" r="10.5" fill="#FFD21E" />
+    <circle cx="8.2" cy="10.2" r="1.4" fill="#000" />
+    <circle cx="15.8" cy="10.2" r="1.4" fill="#000" />
+    <path d="M7 14.2c1 1.7 2.9 2.8 5 2.8s4-1.1 5-2.8" stroke="#000" strokeWidth="1.3" fill="none" strokeLinecap="round" />
+    <path d="M3.6 12.5c-.9.4-1.4 1.3-1.1 2.1.3.9 1.3 1.3 2.2 1" fill="none" stroke="#000" strokeWidth="1.1" strokeLinecap="round" />
+    <path d="M20.4 12.5c.9.4 1.4 1.3 1.1 2.1-.3.9-1.3 1.3-2.2 1" fill="none" stroke="#000" strokeWidth="1.1" strokeLinecap="round" />
+  </svg>
+);
+
+export const OpenAiIcon = ({ className }: IconProps) => (
+  <svg className={className} role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <title>OpenAI</title>
+    <path d="M12 2.2c1.3 0 2.5.5 3.4 1.4a4.7 4.7 0 013.9 2.3c.9 1.5 1 3.2.4 4.7.9.9 1.4 2.1 1.4 3.4s-.5 2.5-1.4 3.4c.6 1.5.5 3.2-.4 4.7a4.7 4.7 0 01-3.9 2.3c-.9.9-2.1 1.4-3.4 1.4s-2.5-.5-3.4-1.4a4.7 4.7 0 01-3.9-2.3c-.9-1.5-1-3.2-.4-4.7A4.8 4.8 0 013 12c0-1.3.5-2.5 1.4-3.4a4.7 4.7 0 01.4-4.7 4.7 4.7 0 013.9-2.3A4.7 4.7 0 0112 2.2zm-.9 4.1L7.3 8.6a.9.9 0 00-.4.7v4.9c0 .3.2.6.4.7l3.8 2.3c.3.2.6.2.9 0l3.8-2.3c.3-.1.5-.4.5-.7V9.3c0-.3-.2-.6-.5-.7l-3.8-2.3a.8.8 0 00-.9 0z" fill="currentColor" />
+  </svg>
+);
+
+export const GeminiIcon = ({ className }: IconProps) => (
+  <svg className={className} role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <title>Google Gemini</title>
+    <path d="M12 2c.6 4.4 3.4 7.4 8 8-4.6.6-7.4 3.4-8 8-.6-4.6-3.4-7.4-8-8 4.6-.6 7.4-3.6 8-8z" fill="url(#geminiGradient)" />
+    <defs>
+      <linearGradient id="geminiGradient" x1="4" y1="2" x2="20" y2="22" gradientUnits="userSpaceOnUse">
+        <stop stopColor="#4C8DF6" />
+        <stop offset="0.5" stopColor="#9168C0" />
+        <stop offset="1" stopColor="#F76B8A" />
+      </linearGradient>
+    </defs>
+  </svg>
+);
+
+export const GroqIcon = ({ className }: IconProps) => (
+  <svg className={className} role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <title>Groq</title>
+    <circle cx="12" cy="12" r="10.5" fill="#F55036" />
+    <path d="M8 15.5V8.5h3.2a2.6 2.6 0 010 5.2H9.6l3 3.4" fill="none" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
+export const NumpyIcon = ({ className }: IconProps) => (
+  <svg className={className} role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <title>NumPy</title>
+    <path d="M12 1.5l8.5 4.9v11.2L12 22.5l-8.5-4.9V6.4z" fill="none" stroke="#4D77CF" strokeWidth="1.4" />
+    <path d="M7 8.5l5 3v6l-5-3zM17 8.5l-5 3v6l5-3z" fill="#4D77CF" />
+  </svg>
+);
+
+export const PandasIcon = ({ className }: IconProps) => (
+  <svg className={className} role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <title>pandas</title>
+    <rect x="3" y="3" width="4" height="18" rx="1.5" fill="#150458" />
+    <rect x="9" y="7" width="4" height="14" rx="1.5" fill="#150458" />
+    <rect x="15" y="3" width="4" height="18" rx="1.5" fill="#E70488" />
+    <circle cx="5" cy="6" r="1.1" fill="#fff" />
+    <circle cx="11" cy="10" r="1.1" fill="#fff" />
+    <circle cx="17" cy="6" r="1.1" fill="#fff" />
+  </svg>
+);
+
+export const NextJsIcon = ({ className }: IconProps) => (
+  <svg className={className} role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <title>Next.js</title>
+    <circle cx="12" cy="12" r="11.5" fill="#000" />
+    <path d="M8.6 7.6v9h1.5v-6.7l6.4 8c.7-.1 1.4-.4 2-.7L9.9 6.9c-.4-.2-.9 0-1.3.7z" fill="#fff" />
+    <rect x="14.7" y="7.6" width="1.5" height="7.2" fill="#fff" />
+  </svg>
+);
+
+export const StreamlitIcon = ({ className }: IconProps) => (
+  <svg className={className} role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <title>Streamlit</title>
+    <path d="M3 13.5l6-9 3 4.5 3-4.5 6 9-6 9-3-4.5-3 4.5z" fill="#FF4B4B" />
+  </svg>
+);
+
+export const OracleIcon = ({ className }: IconProps) => (
+  <svg className={className} role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <title>Oracle</title>
+    <rect x="1.5" y="7.5" width="21" height="9" rx="4.5" fill="none" stroke="#F80000" strokeWidth="2" />
+  </svg>
 );

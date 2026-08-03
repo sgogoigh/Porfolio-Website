@@ -10,7 +10,7 @@ import * as Icons from '@/components/icons'
 import { ArrowUpRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-type Category = 'Developer' | 'AI/ML';
+type Category = 'AI/ML' | 'Research';
 
 const TechIcon = ({ icon }: { icon: string }) => {
   const IconComponent = (Icons as any)[icon];
@@ -62,7 +62,7 @@ const ProjectCard = ({ project }: { project: typeof allProjects[0] }) => {
 }
 
 export default function Projects() {
-  const [activeCategory, setActiveCategory] = useState<Category>('Developer')
+  const [activeCategory, setActiveCategory] = useState<Category>('AI/ML')
 
   const filteredProjects = useMemo(() => {
     return allProjects.filter(p => p.category === activeCategory);
@@ -73,7 +73,7 @@ export default function Projects() {
       <h2 className="font-headline text-4xl md:text-5xl font-bold">Projects</h2>
       
       <div className="flex gap-2 p-1 rounded-full bg-input/50 border border-white/10">
-        {(['Developer', 'AI/ML'] as Category[]).map(category => (
+        {(['AI/ML', 'Research'] as Category[]).map(category => (
           <Button
             key={category}
             variant="ghost"

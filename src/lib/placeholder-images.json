@@ -7,52 +7,76 @@
       "imageHint": "male portrait"
     },
     {
-      "id": "project-dev-1",
-      "description": "Abstract code on a screen",
-      "imageUrl": "https://picsum.photos/seed/dev1/600/400",
-      "imageHint": "abstract code"
-    },
-    {
-      "id": "project-dev-2",
-      "description": "A modern web application interface",
-      "imageUrl": "https://picsum.photos/seed/dev2/600/400",
-      "imageHint": "web application"
-    },
-    {
-      "id": "project-dev-3",
-      "description": "Network connections and data streams",
-      "imageUrl": "https://picsum.photos/seed/dev3/600/400",
-      "imageHint": "network data"
-    },
-    {
-      "id": "project-dev-4",
-      "description": "A clean and minimalist blog layout",
-      "imageUrl": "https://picsum.photos/seed/dev4/600/400",
-      "imageHint": "minimalist blog"
-    },
-    {
-      "id": "project-ai-1",
-      "description": "Visualization of a neural network",
-      "imageUrl": "https://picsum.photos/seed/ai1/600/400",
-      "imageHint": "neural network"
-    },
-    {
-      "id": "project-ai-2",
-      "description": "Analysis of data charts and graphs",
-      "imageUrl": "https://picsum.photos/seed/ai2/600/400",
-      "imageHint": "data charts"
-    },
-    {
       "id": "project-ai-3",
       "description": "A futuristic robotics concept",
       "imageUrl": "https://picsum.photos/seed/ai3/600/400",
       "imageHint": "futuristic robotics"
     },
     {
-      "id": "project-ai-4",
-      "description": "An illustration of natural language processing",
-      "imageUrl": "https://picsum.photos/seed/ai4/600/400",
-      "imageHint": "language processing"
+      "id": "project-research-1",
+      "description": "A graph network visualization for RAG routing",
+      "imageUrl": "https://picsum.photos/seed/research1/600/400",
+      "imageHint": "workflow graph"
+    },
+    {
+      "id": "project-research-2",
+      "description": "A network security graph visualization",
+      "imageUrl": "https://picsum.photos/seed/research2/600/400",
+      "imageHint": "graph network security"
+    },
+    {
+      "id": "project-research-3",
+      "description": "An illustration of image captioning",
+      "imageUrl": "https://picsum.photos/seed/research3/600/400",
+      "imageHint": "image captioning"
+    },
+    {
+      "id": "project-research-4",
+      "description": "A blockchain wallet analytics concept",
+      "imageUrl": "https://picsum.photos/seed/research4/600/400",
+      "imageHint": "blockchain wallet"
+    },
+    {
+      "id": "project-ai-5",
+      "description": "A real-time voice assistant interface",
+      "imageUrl": "https://picsum.photos/seed/ai5/600/400",
+      "imageHint": "voice assistant"
+    },
+    {
+      "id": "project-ai-6",
+      "description": "A cinematic movie script concept",
+      "imageUrl": "https://picsum.photos/seed/ai6/600/400",
+      "imageHint": "movie script"
+    },
+    {
+      "id": "project-ai-7",
+      "description": "A movie website interface",
+      "imageUrl": "https://picsum.photos/seed/ai7/600/400",
+      "imageHint": "movie website"
+    },
+    {
+      "id": "project-ai-8",
+      "description": "A study notes and flashcards concept",
+      "imageUrl": "https://picsum.photos/seed/ai8/600/400",
+      "imageHint": "study notes"
+    },
+    {
+      "id": "project-ai-9",
+      "description": "A movie recommendation interface",
+      "imageUrl": "https://picsum.photos/seed/ai9/600/400",
+      "imageHint": "movie recommendation"
+    },
+    {
+      "id": "project-ai-10",
+      "description": "A music playlist concept",
+      "imageUrl": "https://picsum.photos/seed/ai10/600/400",
+      "imageHint": "music playlist"
+    },
+    {
+      "id": "project-ai-11",
+      "description": "A football analytics concept",
+      "imageUrl": "https://picsum.photos/seed/ai11/600/400",
+      "imageHint": "football analytics"
     }
   ]
 }
