@@ -22,7 +22,7 @@ export const education = {
 };
 
 export const techStack = [
-  { name: 'Python', icon: 'PythonIcon' }
+  { name: 'Python', icon: 'PythonIcon' },
   { name: 'JavaScript', icon: 'JavaScriptIcon' },
   { name: 'SQL', icon: 'SqlIcon' },
   { name: 'PyTorch', icon: 'PyTorchIcon' },
