@@ -88,35 +88,31 @@ export default {
             height: '0',
           },
         },
-        'jump-and-flip': {
-          '0%, 80%, 100%': { transform: 'translateY(0) rotateY(0)' },
-          '90%': { transform: 'translateY(-30px) rotateY(180deg)' },
+        /* Rests for most of the cycle, then hops and completes one full in-plane
+           turn. Ends at 360deg so the loop is seamless without a snap-back, and
+           stays in-plane so the portrait is never mirrored (which is what
+           rotateY(180deg) used to do). */
+        'jump-and-spin': {
+          '0%, 70%': { transform: 'translateY(0) rotate(0deg) scale(1)' },
+          '80%': { transform: 'translateY(-34px) rotate(150deg) scale(1.05)' },
+          '90%': { transform: 'translateY(-34px) rotate(280deg) scale(1.05)' },
+          '100%': { transform: 'translateY(0) rotate(360deg) scale(1)' },
+        },
+        'ring-pulse': {
+          '0%, 100%': { opacity: '0.55', transform: 'scale(1)' },
+          '50%': { opacity: '1', transform: 'scale(1.04)' },
         },
         tilt: {
           '0%, 50%, 100%': { transform: 'rotate(0deg)' },
           '25%': { transform: 'rotate(0.5deg)' },
           '75%': { transform: 'rotate(-0.5deg)' },
         },
-        'glow-sweep': {
-          '0%': {
-            boxShadow: 'inset -8px 0px 8px -8px hsl(var(--primary)), inset 0 0 0 0 transparent',
-            opacity: '0.5'
-          },
-          '50%': {
-            boxShadow: 'inset 0 0 16px -4px hsl(var(--primary)), inset 8px 0px 8px -8px hsl(var(--primary))',
-            opacity: '1'
-          },
-          '100%': {
-            boxShadow: 'inset 8px 0px 8px -8px hsl(var(--primary)), inset 0 0 0 0 transparent',
-            opacity: '0.5'
-          }
-        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
-        'jump-and-flip': 'jump-and-flip 5s ease-in-out infinite',
-        'glow-sweep': 'glow-sweep 2s ease-in-out infinite alternate',
+        'jump-and-spin': 'jump-and-spin 5s ease-in-out infinite',
+        'ring-pulse': 'ring-pulse 3s ease-in-out infinite',
         tilt: 'tilt 10s linear infinite',
       },
       backgroundImage: {

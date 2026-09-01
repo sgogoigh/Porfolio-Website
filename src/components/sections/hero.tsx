@@ -48,16 +48,26 @@ export default function Hero() {
           </div>
           <div className="md:col-span-2 relative flex items-center justify-center h-64 md:h-full">
             {profileImage && (
-              <div className="relative group">
-                <Image
-                  src={profileImage.imageUrl}
-                  alt={profileImage.description}
-                  data-ai-hint={profileImage.imageHint}
-                  width={256}
-                  height={256}
-                  className="rounded-full object-cover z-10 animate-jump-and-flip border-4 border-background shadow-2xl shadow-primary/20"
+              <div className="relative flex items-center justify-center">
+                {/* Static halo — stays put while the portrait hops, so the glow
+                    reads as light in the room rather than part of the avatar. */}
+                <div
+                  aria-hidden
+                  className="absolute h-56 w-56 md:h-64 md:w-64 rounded-full bg-gradient-to-br from-primary/50 to-accent/50 blur-3xl animate-ring-pulse"
                 />
-                <div className="absolute inset-0 rounded-full overflow-hidden animate-glow-sweep border-4 border-transparent"></div>
+                {/* Frame + photo animate together as one unit. */}
+                <div className="relative animate-jump-and-spin">
+                  <div className="rounded-full p-[3px] bg-gradient-to-br from-primary via-accent to-primary shadow-[0_0_45px_-8px_hsl(var(--primary)/0.7)]">
+                    <Image
+                      src={profileImage.imageUrl}
+                      alt={profileImage.description}
+                      data-ai-hint={profileImage.imageHint}
+                      width={256}
+                      height={256}
+                      className="h-52 w-52 md:h-60 md:w-60 rounded-full object-cover aspect-square border-[3px] border-background"
+                    />
+                  </div>
+                </div>
               </div>
             )}
           </div>
