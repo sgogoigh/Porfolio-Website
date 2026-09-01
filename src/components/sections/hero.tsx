@@ -50,15 +50,18 @@ export default function Hero() {
           </div>
           <div className="md:col-span-2 relative flex items-center justify-center h-64 md:h-full">
             {profileImage && (
-              <div className="relative flex items-center justify-center">
+              // perspective gives the flip real depth instead of a flat squash.
+              <div className="relative flex items-center justify-center [perspective:1200px]">
                 {/* Static halo — stays put while the portrait hops, so the glow
                     reads as light in the room rather than part of the avatar. */}
                 <div
                   aria-hidden
                   className="absolute h-56 w-56 md:h-64 md:w-64 rounded-full bg-gradient-to-br from-primary/50 to-accent/50 blur-3xl animate-ring-pulse"
                 />
-                {/* Frame + photo animate together as one unit. */}
-                <div className="relative animate-jump-and-spin">
+                {/* Frame + photo flip together as one unit. backface-visibility
+                    hides the composite through the back half of the turn, so the
+                    portrait disappears edge-on rather than showing mirrored. */}
+                <div className="relative animate-coin-toss [backface-visibility:hidden]">
                   <div className="rounded-full p-[3px] bg-gradient-to-br from-primary via-accent to-primary shadow-[0_0_45px_-8px_hsl(var(--primary)/0.7)]">
                     <Image
                       src={profileImage.imageUrl}

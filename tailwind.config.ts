@@ -94,15 +94,17 @@ export default {
             height: '0',
           },
         },
-        /* Rests for most of the cycle, then hops and completes one full in-plane
-           turn. Ends at 360deg so the loop is seamless without a snap-back, and
-           stays in-plane so the portrait is never mirrored (which is what
-           rotateY(180deg) used to do). */
-        'jump-and-spin': {
-          '0%, 70%': { transform: 'translateY(0) rotate(0deg) scale(1)' },
-          '80%': { transform: 'translateY(-34px) rotate(150deg) scale(1.05)' },
-          '90%': { transform: 'translateY(-34px) rotate(280deg) scale(1.05)' },
-          '100%': { transform: 'translateY(0) rotate(360deg) scale(1)' },
+        /* A tossed coin, not a spinning disc: rests for most of the cycle, then
+           hops and flips a full turn about the horizontal axis. Paired with
+           backface-visibility:hidden, the face twists edge-on, disappears
+           through the back half of the turn, and reappears as it drops back to
+           its baseline. Ends at 360deg so the loop is seamless. */
+        'coin-toss': {
+          '0%, 66%': { transform: 'translateY(0) rotateX(0deg) scale(1)' },
+          '74%': { transform: 'translateY(-44px) rotateX(110deg) scale(1.04)' },
+          '82%': { transform: 'translateY(-58px) rotateX(200deg) scale(1.04)' },
+          '90%': { transform: 'translateY(-40px) rotateX(290deg) scale(1.02)' },
+          '100%': { transform: 'translateY(0) rotateX(360deg) scale(1)' },
         },
         'ring-pulse': {
           '0%, 100%': { opacity: '0.55', transform: 'scale(1)' },
@@ -117,7 +119,7 @@ export default {
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
-        'jump-and-spin': 'jump-and-spin 5s ease-in-out infinite',
+        'coin-toss': 'coin-toss 5s ease-in-out infinite',
         'ring-pulse': 'ring-pulse 3s ease-in-out infinite',
         tilt: 'tilt 10s linear infinite',
       },
