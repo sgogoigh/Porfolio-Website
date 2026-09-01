@@ -23,54 +23,56 @@ const ProjectCard = ({ project }: { project: typeof allProjects[0] }) => {
   const projectImage = PlaceHolderImages.find(img => img.id === project.imageId);
 
   return (
-    // py leaves room for the hover lift+scale so the scroll container can't clip it.
-    <div className="w-80 shrink-0 py-5">
+    <div
+      className={cn(
+        'group/card w-80 shrink-0 py-6',
+        'transition-all duration-300 ease-out',
+        // Any card hovered shrinks and dims the whole row...
+        'group-hover/row:scale-[0.94] group-hover/row:opacity-50',
+        // ...and the one actually under the cursor overrides that and grows.
+        // ! is needed because both rules land at the same specificity.
+        'hover:!scale-[1.06] hover:!opacity-100 hover:z-20',
+      )}
+    >
       <Card
         className={cn(
-          'group relative h-full overflow-hidden bg-card/50 border border-white/10',
-          'transition-all duration-300 ease-out',
-          'hover:scale-[1.05] hover:-translate-y-2 hover:z-20 hover:border-primary/60',
-          'hover:shadow-[0_18px_50px_-12px_hsl(var(--primary)/0.45)]'
+          'flex h-full flex-col overflow-hidden bg-card/60 border border-white/10',
+          'transition-[border-color,box-shadow] duration-300',
+          'group-hover/card:border-primary/60',
+          'group-hover/card:shadow-[0_18px_50px_-12px_hsl(var(--primary)/0.45)]'
         )}
       >
         {projectImage && (
-          <div className="absolute inset-x-0 top-0 h-36 short:h-28 overflow-hidden">
+          <div className="h-32 short:h-24 shrink-0 overflow-hidden">
             <Image
               src={projectImage.imageUrl}
               alt={project.name}
               width={320}
-              height={144}
+              height={128}
               data-ai-hint={projectImage.imageHint}
-              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+              className="h-full w-full object-cover transition-transform duration-500 group-hover/card:scale-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent" />
           </div>
         )}
 
-        {/* Slides up over the image on hover, which frees the height needed to
-            show the description in full without resizing the card. */}
-        <div
-          className={cn(
-            'absolute inset-x-0 bottom-0 top-[7.5rem] short:top-[6.5rem] flex flex-col gap-3 p-4',
-            'bg-card/90 backdrop-blur-sm transition-[top,background-color,padding] duration-300 ease-out',
-            // pb on hover reserves room for the absolutely-placed reveal block.
-            'group-hover:top-0 group-hover:bg-card/95 group-hover:pb-[5.5rem]'
-          )}
-        >
-          <h3 className="font-headline text-base md:text-lg font-semibold leading-snug">{project.name}</h3>
+        <div className="flex min-h-0 flex-1 flex-col gap-2 p-4 short:gap-1.5 short:p-3">
+          <h3 className="font-headline text-sm md:text-base font-semibold leading-snug">
+            {project.name}
+          </h3>
 
-          <p className="text-sm short:text-xs text-muted-foreground line-clamp-2 group-hover:line-clamp-none short:group-hover:line-clamp-6">
+          {/* Clamped to 6 on hover rather than unbounded: every description fits
+              well inside 6 lines, so this shows them in full while still giving
+              the card a hard height bound. */}
+          <p className="text-sm short:text-xs text-muted-foreground line-clamp-2 group-hover/card:line-clamp-6 short:group-hover/card:line-clamp-4">
             {project.description}
           </p>
 
-          {/* Absolutely placed so it costs no layout height while hidden — in flow
-              it pushed the un-hovered card past its own height. */}
-          <div className="absolute inset-x-4 bottom-4 flex flex-col gap-2 opacity-0 translate-y-2 transition-all duration-300 delay-75 group-hover:opacity-100 group-hover:translate-y-0">
+          <div className="mt-auto flex flex-col gap-2 short:gap-1.5">
             <div className="flex flex-wrap gap-1.5">
               {project.techIcons.map(iconKey => (
                 <span
                   key={iconKey}
-                  className="rounded-full border border-primary/30 bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary"
+                  className="rounded-full border border-primary/30 bg-primary/10 px-2.5 py-0.5 text-xs short:text-[10px] font-medium text-primary"
                 >
                   {techLabel(iconKey)}
                 </span>
@@ -115,7 +117,7 @@ export default function Projects() {
         ))}
       </div>
 
-      <div className="w-full flex gap-6 -mx-4 px-4 overflow-x-auto no-scrollbar h-[clamp(20rem,46vh,24rem)] items-stretch">
+      <div className="group/row w-full flex gap-6 -mx-4 px-4 overflow-x-auto no-scrollbar h-[clamp(23rem,56vh,28rem)] items-stretch">
         {filteredProjects.map((project) => (
           <ProjectCard key={project.name} project={project} />
         ))}
