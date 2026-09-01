@@ -117,18 +117,12 @@ export default {
           '0%, 100%': { opacity: '0.55', transform: 'scale(1)' },
           '50%': { opacity: '1', transform: 'scale(1.04)' },
         },
-        tilt: {
-          '0%, 50%, 100%': { transform: 'rotate(0deg)' },
-          '25%': { transform: 'rotate(0.5deg)' },
-          '75%': { transform: 'rotate(-0.5deg)' },
-        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         'coin-toss': 'coin-toss 10s ease-in-out infinite',
         'ring-pulse': 'ring-pulse 3s ease-in-out infinite',
-        tilt: 'tilt 10s linear infinite',
       },
       backgroundImage: {
         'grid-white/[0.02]': `linear-gradient(to right, theme(colors.white / 2%) 1px, transparent 1px), linear-gradient(to bottom, theme(colors.white / 2%) 1px, transparent 1px)`,
