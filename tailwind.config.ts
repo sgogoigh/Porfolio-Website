@@ -16,6 +16,12 @@ export default {
       },
     },
     extend: {
+      // Height-based breakpoints. Every section is exactly one viewport tall, so
+      // the binding constraint is window height, not width: `short:` tightens
+      // the expandable sections enough to keep them from clipping.
+      screens: {
+        short: { raw: '(max-height: 720px)' },
+      },
       fontFamily: {
         body: ['Inter', 'sans-serif'],
         headline: ['Space Grotesk', 'sans-serif'],

@@ -33,17 +33,17 @@ export default function Hero() {
   const heroSocials = socialLinks.filter(link => ['email', 'linkedin', 'twitter', 'github'].includes(link.id));
 
   return (
-    <div className="relative w-full h-full flex flex-col items-center justify-center pt-24 pb-20">
-      <div className="flex-grow flex items-center w-full">
+    <div className="relative w-full h-full flex flex-col items-center justify-center gap-8 py-8">
+      <div className="flex min-h-0 flex-grow items-center w-full">
         <div className="grid md:grid-cols-5 gap-8 items-center w-full">
           <div className="md:col-span-3 flex flex-col items-center text-center">
-            <h1 
-              className={cn("font-serif text-6xl md:text-8xl font-bold tracking-tighter")}
+            <h1
+              className={cn("font-serif text-5xl sm:text-6xl md:text-8xl font-bold tracking-tighter")}
             >
               Sunny Gogoi
             </h1>
             <p className="mt-4 text-lg md:text-xl text-muted-foreground font-manrope">
-              Software Developer & AI Engineer
+              Software Developer &amp; AI Engineer
             </p>
           </div>
           <div className="md:col-span-2 relative flex items-center justify-center h-64 md:h-full">
@@ -74,7 +74,7 @@ export default function Hero() {
         </div>
       </div>
       
-      <div className="flex flex-col items-center gap-6 mt-8">
+      <div className="flex shrink-0 flex-col items-center gap-4">
         <div className="flex items-center gap-4">
           {heroSocials.map(link => {
             const IconComponent = iconMap[link.id as keyof typeof iconMap];

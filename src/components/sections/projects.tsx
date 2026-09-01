@@ -34,7 +34,7 @@ const ProjectCard = ({ project }: { project: typeof allProjects[0] }) => {
         )}
       >
         {projectImage && (
-          <div className="absolute inset-x-0 top-0 h-36 overflow-hidden">
+          <div className="absolute inset-x-0 top-0 h-36 short:h-28 overflow-hidden">
             <Image
               src={projectImage.imageUrl}
               alt={project.name}
@@ -51,19 +51,21 @@ const ProjectCard = ({ project }: { project: typeof allProjects[0] }) => {
             show the description in full without resizing the card. */}
         <div
           className={cn(
-            'absolute inset-x-0 bottom-0 top-[7.5rem] flex flex-col gap-3 p-4',
-            'bg-card/90 backdrop-blur-sm transition-[top,background-color] duration-300 ease-out',
-            'group-hover:top-0 group-hover:bg-card/95'
+            'absolute inset-x-0 bottom-0 top-[7.5rem] short:top-[6.5rem] flex flex-col gap-3 p-4',
+            'bg-card/90 backdrop-blur-sm transition-[top,background-color,padding] duration-300 ease-out',
+            // pb on hover reserves room for the absolutely-placed reveal block.
+            'group-hover:top-0 group-hover:bg-card/95 group-hover:pb-[5.5rem]'
           )}
         >
-          <h3 className="font-headline text-lg font-semibold leading-snug">{project.name}</h3>
+          <h3 className="font-headline text-base md:text-lg font-semibold leading-snug">{project.name}</h3>
 
-          <p className="text-sm text-muted-foreground line-clamp-2 group-hover:line-clamp-none">
+          <p className="text-sm short:text-xs text-muted-foreground line-clamp-2 group-hover:line-clamp-none short:group-hover:line-clamp-6">
             {project.description}
           </p>
 
-          {/* Tech words + link reveal with the panel. mt-auto pins them low. */}
-          <div className="mt-auto flex flex-col gap-3 opacity-0 translate-y-2 transition-all duration-300 delay-75 group-hover:opacity-100 group-hover:translate-y-0">
+          {/* Absolutely placed so it costs no layout height while hidden — in flow
+              it pushed the un-hovered card past its own height. */}
+          <div className="absolute inset-x-4 bottom-4 flex flex-col gap-2 opacity-0 translate-y-2 transition-all duration-300 delay-75 group-hover:opacity-100 group-hover:translate-y-0">
             <div className="flex flex-wrap gap-1.5">
               {project.techIcons.map(iconKey => (
                 <span
@@ -94,8 +96,8 @@ export default function Projects() {
   }, [activeCategory]);
 
   return (
-    <div className="flex h-full flex-col items-center justify-center gap-6 w-full">
-      <h2 className="font-headline text-4xl md:text-5xl font-bold">Projects</h2>
+    <div className="flex h-full flex-col items-center justify-center gap-6 short:gap-3 w-full">
+      <h2 className="font-headline text-4xl md:text-5xl short:text-3xl font-bold">Projects</h2>
 
       <div className="flex gap-2 p-1 rounded-full bg-input/50 border border-white/10">
         {(['AI/ML', 'Research'] as Category[]).map(category => (
@@ -113,7 +115,7 @@ export default function Projects() {
         ))}
       </div>
 
-      <div className="w-full flex gap-6 -mx-4 px-4 overflow-x-auto no-scrollbar h-[clamp(22rem,50vh,27rem)] items-stretch">
+      <div className="w-full flex gap-6 -mx-4 px-4 overflow-x-auto no-scrollbar h-[clamp(20rem,46vh,24rem)] items-stretch">
         {filteredProjects.map((project) => (
           <ProjectCard key={project.name} project={project} />
         ))}

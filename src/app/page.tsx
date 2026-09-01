@@ -113,10 +113,10 @@ export default function Home() {
                 id === 'home' && 'section-visible',
               )}
             >
-              <div className={cn(
-                "w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full",
-                ['about', 'experience', 'projects', 'connect'].includes(id) ? "overflow-y-auto no-scrollbar" : ""
-              )}>
+              {/* Every section is exactly one viewport tall. overflow-hidden is
+                  the backstop: sections are laid out to fit, and nothing is
+                  allowed to start its own scroll area. */}
+              <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full min-h-0 overflow-hidden pb-4">
                 {sectionComponents[id]}
               </div>
             </section>
