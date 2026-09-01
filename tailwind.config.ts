@@ -100,11 +100,18 @@ export default {
            carry no rotation, so the fast part is clearly the airborne spin.
            Two full turns keep the end state (720deg) identical to the start, so
            the loop is seamless and it always rests face-on. */
+        /* Percentages are against the 10s duration below:
+             0-35%   rest at baseline      (3.5s)
+             35-50%  rise slowly to apex   (1.5s)
+             50-67%  two turns at the apex (1.7s - the spin, kept slow enough to
+                                            actually follow)
+             67-82%  settle back down      (1.5s)
+             82-100% rest                  (1.8s)                              */
         'coin-toss': {
-          '0%, 55%': { transform: 'translateY(0) rotateY(0deg) scale(1)' },
-          '70%': { transform: 'translateY(-72px) rotateY(0deg) scale(1.04)' },
-          '80%': { transform: 'translateY(-72px) rotateY(720deg) scale(1.04)' },
-          '95%, 100%': { transform: 'translateY(0) rotateY(720deg) scale(1)' },
+          '0%, 35%': { transform: 'translateY(0) rotateY(0deg) scale(1)' },
+          '50%': { transform: 'translateY(-72px) rotateY(0deg) scale(1.04)' },
+          '67%': { transform: 'translateY(-72px) rotateY(720deg) scale(1.04)' },
+          '82%, 100%': { transform: 'translateY(0) rotateY(720deg) scale(1)' },
         },
         'ring-pulse': {
           '0%, 100%': { opacity: '0.55', transform: 'scale(1)' },
@@ -119,7 +126,7 @@ export default {
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
-        'coin-toss': 'coin-toss 5s ease-in-out infinite',
+        'coin-toss': 'coin-toss 10s ease-in-out infinite',
         'ring-pulse': 'ring-pulse 3s ease-in-out infinite',
         tilt: 'tilt 10s linear infinite',
       },
