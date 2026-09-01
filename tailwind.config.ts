@@ -94,17 +94,17 @@ export default {
             height: '0',
           },
         },
-        /* A tossed coin, not a spinning disc: rests for most of the cycle, then
-           hops and flips a full turn about the horizontal axis. Paired with
-           backface-visibility:hidden, the face twists edge-on, disappears
-           through the back half of the turn, and reappears as it drops back to
-           its baseline. Ends at 360deg so the loop is seamless. */
+        /* Rest, rise slowly, spin fast at the apex, settle back down slowly.
+           The spin is rotateY - about the vertical axis, so the portrait sweeps
+           horizontally rather than tipping top-over-bottom. Rise and descent
+           carry no rotation, so the fast part is clearly the airborne spin.
+           Two full turns keep the end state (720deg) identical to the start, so
+           the loop is seamless and it always rests face-on. */
         'coin-toss': {
-          '0%, 66%': { transform: 'translateY(0) rotateX(0deg) scale(1)' },
-          '74%': { transform: 'translateY(-44px) rotateX(110deg) scale(1.04)' },
-          '82%': { transform: 'translateY(-58px) rotateX(200deg) scale(1.04)' },
-          '90%': { transform: 'translateY(-40px) rotateX(290deg) scale(1.02)' },
-          '100%': { transform: 'translateY(0) rotateX(360deg) scale(1)' },
+          '0%, 55%': { transform: 'translateY(0) rotateY(0deg) scale(1)' },
+          '70%': { transform: 'translateY(-72px) rotateY(0deg) scale(1.04)' },
+          '80%': { transform: 'translateY(-72px) rotateY(720deg) scale(1.04)' },
+          '95%, 100%': { transform: 'translateY(0) rotateY(720deg) scale(1)' },
         },
         'ring-pulse': {
           '0%, 100%': { opacity: '0.55', transform: 'scale(1)' },
