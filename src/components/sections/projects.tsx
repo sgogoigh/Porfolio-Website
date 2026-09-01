@@ -1,13 +1,33 @@
 'use client'
 
-import React, { useState, useMemo } from 'react'
+import React, { useState, useMemo, useRef, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { projects as allProjects, techStack } from '@/lib/data'
 import { PlaceHolderImages } from '@/lib/placeholder-images'
-import { ArrowUpRight } from 'lucide-react'
+import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
+
+const CARD_W = 320;   // w-80
+const CARD_GAP = 24;  // gap-6
+const ROW_PAD = 16;   // px-4 on the row, each side
+/** Distance from one card's start edge to the next. */
+const CARD_STEP = CARD_W + CARD_GAP;
+
+/**
+ * Widest row that holds a whole number of cards, and how many that is.
+ *
+ * Sizing the row to an exact multiple of the card pitch is what guarantees no
+ * partially-cropped card is ever visible: combined with scroll-snap on the card
+ * start edges, every reachable scroll position (including the last one) shows
+ * only complete cards.
+ */
+const fitCards = (availableWidth: number) => {
+  const usable = availableWidth - ROW_PAD * 2;
+  const count = Math.max(1, Math.floor((usable + CARD_GAP) / CARD_STEP));
+  return { count, width: count * CARD_W + (count - 1) * CARD_GAP + ROW_PAD * 2 };
+};
 
 type Category = 'AI/ML' | 'Research';
 
@@ -19,13 +39,46 @@ type Category = 'AI/ML' | 'Research';
 const techLabel = (iconKey: string) =>
   techStack.find(t => t.icon === iconKey)?.name ?? iconKey.replace(/Icon$/, '');
 
+const ScrollArrow = ({
+  side,
+  show,
+  onClick,
+}: {
+  side: 'left' | 'right';
+  show: boolean;
+  onClick: () => void;
+}) => {
+  const Icon = side === 'left' ? ChevronLeft : ChevronRight;
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-label={side === 'left' ? 'Scroll to previous projects' : 'Scroll to more projects'}
+      // aria-hidden + tabIndex -1 while inert, so it leaves the tab order and the
+      // accessibility tree instead of being an invisible clickable target.
+      aria-hidden={!show}
+      tabIndex={show ? 0 : -1}
+      className={cn(
+        'absolute top-1/2 z-30 -translate-y-1/2 rounded-full p-2',
+        'border border-white/15 bg-background/80 text-muted-foreground backdrop-blur-sm',
+        'transition-all duration-300 hover:border-primary/60 hover:text-primary',
+        'hover:shadow-[0_0_18px_-4px_hsl(var(--primary)/0.6)]',
+        side === 'left' ? '-left-2 md:-left-5' : '-right-2 md:-right-5',
+        show ? 'opacity-100' : 'pointer-events-none opacity-0'
+      )}
+    >
+      <Icon className="h-5 w-5" />
+    </button>
+  );
+};
+
 const ProjectCard = ({ project }: { project: typeof allProjects[0] }) => {
   const projectImage = PlaceHolderImages.find(img => img.id === project.imageId);
 
   return (
     <div
       className={cn(
-        'group/card w-80 shrink-0 py-6',
+        'group/card w-80 shrink-0 py-6 snap-start',
         'transition-all duration-300 ease-out',
         // Any card hovered shrinks and dims the whole row...
         'group-hover/row:scale-[0.94] group-hover/row:opacity-50',
@@ -92,10 +145,60 @@ const ProjectCard = ({ project }: { project: typeof allProjects[0] }) => {
 
 export default function Projects() {
   const [activeCategory, setActiveCategory] = useState<Category>('AI/ML')
+  const rowRef = useRef<HTMLDivElement>(null);
+  const measureRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
+  const [rowWidth, setRowWidth] = useState<number | undefined>(undefined);
 
   const filteredProjects = useMemo(() => {
     return allProjects.filter(p => p.category === activeCategory);
   }, [activeCategory]);
+
+  // Arrows appear only where scrolling is actually possible, so they stay hidden
+  // when the row already fits.
+  const syncArrows = useCallback(() => {
+    const el = rowRef.current;
+    if (!el) return;
+    const max = el.scrollWidth - el.clientWidth;
+    setCanScrollLeft(el.scrollLeft > 4);
+    setCanScrollRight(max > 4 && el.scrollLeft < max - 4);
+  }, []);
+
+  useEffect(() => {
+    const el = rowRef.current;
+    if (!el) return;
+    el.addEventListener('scroll', syncArrows, { passive: true });
+    return () => el.removeEventListener('scroll', syncArrows);
+  }, [syncArrows]);
+
+  // Re-fit the row to a whole number of cards whenever the space available for
+  // it changes.
+  useEffect(() => {
+    const probe = measureRef.current;
+    if (!probe) return;
+    const refit = () => {
+      const { width } = fitCards(probe.clientWidth);
+      setRowWidth(width);
+      syncArrows();
+    };
+    refit();
+    const observer = new ResizeObserver(refit);
+    observer.observe(probe);
+    return () => observer.disconnect();
+  }, [syncArrows]);
+
+  // Arrow state depends on the row's width, which is set a render later.
+  useEffect(syncArrows, [rowWidth, filteredProjects, syncArrows]);
+
+  // Switching category replaces the cards, so return to the start and re-check.
+  useEffect(() => {
+    rowRef.current?.scrollTo({ left: 0 });
+    syncArrows();
+  }, [activeCategory, syncArrows]);
+
+  const scrollByCard = (direction: 1 | -1) =>
+    rowRef.current?.scrollBy({ left: direction * CARD_STEP, behavior: 'smooth' });
 
   return (
     <div className="flex h-full flex-col items-center justify-center gap-6 short:gap-3 w-full">
@@ -117,10 +220,28 @@ export default function Projects() {
         ))}
       </div>
 
-      <div className="group/row w-full flex gap-6 -mx-4 px-4 overflow-x-auto no-scrollbar h-[clamp(23rem,56vh,28rem)] items-stretch">
-        {filteredProjects.map((project) => (
-          <ProjectCard key={project.name} project={project} />
-        ))}
+      {/* Zero-height probe: reports the width available to the row without being
+          affected by the width we then set on the row itself. */}
+      <div ref={measureRef} className="h-0 w-full" aria-hidden />
+
+      <div className="relative mx-auto w-full" style={{ maxWidth: rowWidth }}>
+        <div
+          ref={rowRef}
+          className={cn(
+            'group/row flex w-full gap-6 px-4 overflow-x-auto no-scrollbar items-stretch',
+            'h-[clamp(23rem,56vh,28rem)]',
+            // Snap to card start edges; scroll-pl matches the row padding so a
+            // snapped card sits just inside it rather than under it.
+            'snap-x snap-mandatory scroll-pl-4'
+          )}
+        >
+          {filteredProjects.map((project) => (
+            <ProjectCard key={project.name} project={project} />
+          ))}
+        </div>
+
+        <ScrollArrow side="left" show={canScrollLeft} onClick={() => scrollByCard(-1)} />
+        <ScrollArrow side="right" show={canScrollRight} onClick={() => scrollByCard(1)} />
       </div>
     </div>
   )
