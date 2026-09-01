@@ -36,7 +36,11 @@
     --input: 0 0% 14.9%;
     --ring: 180 100% 50%;
     --radius: 0.5rem;
-    --header-height: 4rem; /* Default value */
+
+    /* Single source of truth for the fixed header's footprint. Consumed by the
+       scroll container's scroll-padding and each section's top padding in
+       src/app/page.tsx. Change it here only. */
+    --header-height: 4rem;
   }
 
   .dark {

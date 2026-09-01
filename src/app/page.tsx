@@ -76,12 +76,7 @@ export default function Home() {
     })
 
     return () => {
-      sections.forEach((section) => {
-        const el = sectionRefs.current[section.id]
-        if (el) {
-          observer.unobserve(el)
-        }
-      })
+      observer.disconnect()
     }
   }, [])
 

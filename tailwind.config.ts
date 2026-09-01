@@ -92,6 +92,11 @@ export default {
           '0%, 80%, 100%': { transform: 'translateY(0) rotateY(0)' },
           '90%': { transform: 'translateY(-30px) rotateY(180deg)' },
         },
+        tilt: {
+          '0%, 50%, 100%': { transform: 'rotate(0deg)' },
+          '25%': { transform: 'rotate(0.5deg)' },
+          '75%': { transform: 'rotate(-0.5deg)' },
+        },
         'glow-sweep': {
           '0%': {
             boxShadow: 'inset -8px 0px 8px -8px hsl(var(--primary)), inset 0 0 0 0 transparent',
@@ -112,6 +117,7 @@ export default {
         'accordion-up': 'accordion-up 0.2s ease-out',
         'jump-and-flip': 'jump-and-flip 5s ease-in-out infinite',
         'glow-sweep': 'glow-sweep 2s ease-in-out infinite alternate',
+        tilt: 'tilt 10s linear infinite',
       },
       backgroundImage: {
         'grid-white/[0.02]': `linear-gradient(to right, theme(colors.white / 2%) 1px, transparent 1px), linear-gradient(to bottom, theme(colors.white / 2%) 1px, transparent 1px)`,
