@@ -33,7 +33,9 @@ export default function Hero() {
   const heroSocials = socialLinks.filter(link => ['email', 'linkedin', 'twitter', 'github'].includes(link.id));
 
   return (
-    <div className="relative w-full h-full flex flex-col items-center justify-center gap-8 py-8">
+    // pb clears the absolutely-positioned scroll arrow below, which the socials
+    // and resume button used to sit on top of. The arrow itself is unchanged.
+    <div className="relative w-full h-full flex flex-col items-center justify-center gap-8 pt-8 pb-8 md:pb-24">
       <div className="flex min-h-0 flex-grow items-center w-full">
         <div className="grid md:grid-cols-5 gap-8 items-center w-full">
           <div className="md:col-span-3 flex flex-col items-center text-center">
