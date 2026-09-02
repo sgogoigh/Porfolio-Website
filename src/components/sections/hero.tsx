@@ -4,7 +4,7 @@ import React from 'react'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { ArrowDown, Download, Github } from 'lucide-react'
-import { socialLinks } from '@/lib/data'
+import { resume, socialLinks } from '@/lib/data'
 import { Mail, Linkedin, Twitter } from 'lucide-react'
 import { PlaceHolderImages } from '@/lib/placeholder-images'
 import { cn } from '@/lib/utils'
@@ -121,8 +121,10 @@ export default function Hero() {
           })}
         </div>
         
+        {/* Filename comes from `resume` in lib/data.ts - swapping the PDF means
+            dropping the new one in public/ and editing that one field. */}
         <Button asChild>
-          <a href="https://drive.google.com/file/d/1r_AAg1DcNYFeDMLvcFQ9hdAF699NlXqV/view?usp=drive_link" download="Sunny_Gogoi_Resume.pdf">
+          <a href={`/${resume.file}`} download={resume.downloadAs}>
             <Download className="mr-2 h-4 w-4" />
             Download Resume
           </a>

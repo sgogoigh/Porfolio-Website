@@ -7,6 +7,23 @@ export const sections = [
   { id: 'connect', title: 'Connect' },
 ] as const;
 
+/**
+ * The resume. To swap it, drop the new PDF into public/ and change `file` to
+ * its filename - nothing else needs touching.
+ *
+ * It is served from our own origin rather than a Drive share link on purpose:
+ * the download attribute is ignored cross-origin, so a Drive link can only
+ * ever open the PDF in the viewer instead of saving it.
+ *
+ * `downloadAs` is what the visitor's browser saves the file as, so the file in
+ * public/ can be named anything convenient (resume-v4-final.pdf) while the
+ * download still arrives with a presentable name.
+ */
+export const resume = {
+  file: 'Sunny_Gogoi_Resume.pdf',
+  downloadAs: 'Sunny_Gogoi_Resume.pdf',
+};
+
 export const socialLinks = [
   { id: 'email', label: 'Email', url: 'mailto:sgogoi2004@gmail.com' },
   { id: 'linkedin', label: 'LinkedIn', url: 'https://linkedin.com/in/sunnygogoi' },
