@@ -39,8 +39,11 @@ const Header = React.forwardRef<HTMLElement, HeaderProps>(({ activeSection, isSc
     <header
       ref={ref}
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-        isScrolled ? 'py-2 bg-background/80 backdrop-blur-lg' : 'py-6'
+        // Opaque at all times, rather than transparent at the top and 80% once
+        // scrolled. It also gives the flying portrait something solid to pass
+        // behind instead of showing through the nav.
+        'fixed top-0 left-0 right-0 z-50 bg-background transition-all duration-300',
+        isScrolled ? 'py-2' : 'py-6'
       )}
     >
       <div className="container mx-auto flex justify-between md:justify-center items-center relative">
