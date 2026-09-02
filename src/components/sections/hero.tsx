@@ -36,21 +36,34 @@ export default function Hero() {
   return (
     // pb clears the absolutely-positioned scroll arrow below, which the socials
     // and resume button used to sit on top of. The arrow itself is unchanged.
-    <div className="relative w-full h-full flex flex-col items-center justify-center gap-8 pt-8 pb-8 md:pb-24">
-      <div className="flex min-h-0 flex-grow items-center justify-center w-full">
+    // Extra top padding: --header-height is 4rem, but at the top of the page the
+    // header is ~90px tall (py-6), so the section's own padding does not clear
+    // it and the portrait's halo was being cut off at the apex of the toss.
+    // pb clears the absolutely-positioned scroll arrow below.
+    <div className="relative w-full h-full flex flex-col items-center justify-center gap-6 pt-16 md:pt-28 short:pt-16 pb-8 md:pb-20">
+      {/* No flex-grow: without it the row and the socials below stay together as
+          one centred group, instead of the row being pushed up and the socials
+          stranded at the bottom of the section. */}
+      <div className="flex min-h-0 items-center justify-center w-full">
         {/* A centred flex pair rather than a 3/2 grid: the grid centred the name
             inside its own columns, which left the name-plus-portrait unit
             off-centre on the page and pushed the two apart. */}
         {/* The gap has to clear the glow, not just the portrait: the halo box is
             wider than the photo and blur-3xl spreads it ~100px further still, so
             a 32px gap left it washing over the text. */}
-        <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 lg:gap-24">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-20 lg:gap-32">
           <div className="flex flex-col items-center md:items-end text-center md:text-right">
             <h1
               className={cn(
-                'font-serif font-bold tracking-tighter leading-[0.95] whitespace-nowrap',
-                'text-6xl sm:text-7xl lg:text-8xl xl:text-[7rem]',
-                'short:text-5xl sm:short:text-6xl lg:short:text-7xl xl:short:text-7xl'
+                // A brush script, so no negative tracking (the strokes are meant
+                // to run together). Its ink runs 1.29em above and 0.18em below
+                // the baseline, well outside a default line box, so the leading
+                // is set per size via the text-{size}/{leading} syntax: a bare
+                // `leading-*` loses to the line-height that the responsive
+                // text-* utilities set.
+                'font-eagle font-normal tracking-normal whitespace-nowrap',
+                'text-6xl/[1.3] sm:text-7xl/[1.3] lg:text-8xl/[1.3] xl:text-[7rem]/[1.3]',
+                'short:text-5xl/[1.3] sm:short:text-6xl/[1.3] lg:short:text-7xl/[1.3] xl:short:text-7xl/[1.3]'
               )}
             >
               Sunny Gogoi
@@ -58,7 +71,9 @@ export default function Hero() {
             {/* self-stretch makes the caption as wide as the name above it, so
                 text-center centres it under the name rather than inheriting the
                 block's right alignment. */}
-            <p className="mt-3 self-stretch text-center text-lg md:text-xl text-muted-foreground font-manrope">
+            {/* mt clears the script's descenders, which reach ~0.18em below the
+                baseline and were cutting through this line. */}
+            <p className="mt-12 short:mt-8 self-stretch text-center text-lg md:text-xl text-muted-foreground font-manrope">
               AI &amp; ML Engineer
             </p>
           </div>
