@@ -99,7 +99,7 @@ export const projects = [
     description: 'A privacy-preserving federated learning approach for global satellite image classification, achieving state-of-the-art performance while maintaining data privacy.',
     techIcons: ['PythonIcon', 'LangChainIcon', 'GroqIcon'],
     url: 'https://github.com/sgogoigh/Graph-RAG-Tokens-Research',
-    imageId: 'project-research-1',
+    imageId: 'project-research-satellite',
   },
   {
     name: 'Federated GraphSAGE for APT Detection',
