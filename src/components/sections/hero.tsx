@@ -41,7 +41,10 @@ export default function Hero() {
         {/* A centred flex pair rather than a 3/2 grid: the grid centred the name
             inside its own columns, which left the name-plus-portrait unit
             off-centre on the page and pushed the two apart. */}
-        <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8">
+        {/* The gap has to clear the glow, not just the portrait: the halo box is
+            wider than the photo and blur-3xl spreads it ~100px further still, so
+            a 32px gap left it washing over the text. */}
+        <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 lg:gap-24">
           <div className="flex flex-col items-center md:items-end text-center md:text-right">
             <h1
               className={cn(
