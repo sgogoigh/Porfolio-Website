@@ -75,7 +75,7 @@ export default function Hero() {
                 />
                 <div
                   aria-hidden
-                  className="absolute h-56 w-56 md:h-64 md:w-64 short:h-44 short:w-44 rounded-full bg-primary/40 blur-2xl animate-ring-pulse"
+                  className="absolute h-56 w-56 md:h-64 md:w-64 short:h-44 short:w-44 rounded-full bg-primary/40 blur-2xl animate-ring-pulse-alt"
                 />
                 {/* Frame + photo flip together as one unit. backface-visibility
                     hides the composite through the back half of the turn, so the

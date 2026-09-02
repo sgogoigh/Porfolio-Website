@@ -117,16 +117,28 @@ export default {
           '88%': { transform: 'translateY(calc(var(--toss-lift, 120px) * -1)) rotateY(720deg) scale(1.08)' },
           '94%, 100%': { transform: 'translateY(0) rotateY(720deg) scale(1)' },
         },
+        /* The two halo layers run these on deliberately mismatched periods
+           (4.3s and 6.7s, which do not divide evenly), so their peaks drift in
+           and out of phase and the resting glow varies instead of pulsing on a
+           obvious loop. Asymmetric stops keep either one from looking like a
+           plain sine. */
         'ring-pulse': {
-          '0%, 100%': { opacity: '0.55', transform: 'scale(1)' },
-          '50%': { opacity: '1', transform: 'scale(1.04)' },
+          '0%, 100%': { opacity: '0.4', transform: 'scale(0.97)' },
+          '35%': { opacity: '0.85', transform: 'scale(1.05)' },
+          '60%': { opacity: '1', transform: 'scale(1.09)' },
+        },
+        'ring-pulse-alt': {
+          '0%, 100%': { opacity: '0.95', transform: 'scale(1.06)' },
+          '45%': { opacity: '0.45', transform: 'scale(0.98)' },
+          '70%': { opacity: '0.7', transform: 'scale(1.02)' },
         },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         'coin-toss': 'coin-toss 9s ease-in-out infinite',
-        'ring-pulse': 'ring-pulse 3s ease-in-out infinite',
+        'ring-pulse': 'ring-pulse 4.3s ease-in-out infinite',
+        'ring-pulse-alt': 'ring-pulse-alt 6.7s ease-in-out infinite',
       },
       backgroundImage: {
         'grid-white/[0.02]': `linear-gradient(to right, theme(colors.white / 2%) 1px, transparent 1px), linear-gradient(to bottom, theme(colors.white / 2%) 1px, transparent 1px)`,
