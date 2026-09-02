@@ -52,7 +52,10 @@ export default function Hero() {
             >
               Sunny Gogoi
             </h1>
-            <p className="mt-3 text-lg md:text-xl text-muted-foreground font-manrope">
+            {/* self-stretch makes the caption as wide as the name above it, so
+                text-center centres it under the name rather than inheriting the
+                block's right alignment. */}
+            <p className="mt-3 self-stretch text-center text-lg md:text-xl text-muted-foreground font-manrope">
               AI &amp; ML Engineer
             </p>
           </div>
