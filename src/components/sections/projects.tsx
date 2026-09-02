@@ -29,6 +29,14 @@ const fitCards = (availableWidth: number) => {
   return { count, width: count * CARD_W + (count - 1) * CARD_GAP + ROW_PAD * 2 };
 };
 
+/**
+ * How much the hovered card grows. With two or more cards visible there is room
+ * either side for it to take the middle; with only one there is nothing to grow
+ * into, so it barely changes (anything larger is clipped by the row).
+ */
+const hoverScaleFor = (visibleCards: number) => (visibleCards >= 2 ? 1.18 : 1.06);
+const DIMMED_SCALE = 0.9;
+
 type Category = 'AI/ML' | 'Research';
 
 /**
@@ -63,7 +71,10 @@ const ScrollArrow = ({
         'border border-white/15 bg-background/80 text-muted-foreground backdrop-blur-sm',
         'transition-all duration-300 hover:border-primary/60 hover:text-primary',
         'hover:shadow-[0_0_18px_-4px_hsl(var(--primary)/0.6)]',
-        side === 'left' ? '-left-2 md:-left-5' : '-right-2 md:-right-5',
+        // Well clear of the row on md+, so an enlarged card does not run under
+        // them. On mobile the row fills the viewport and there is nowhere to put
+        // them but just inside its edges.
+        side === 'left' ? 'left-1 md:-left-14' : 'right-1 md:-right-14',
         show ? 'opacity-100' : 'pointer-events-none opacity-0'
       )}
     >
@@ -72,21 +83,59 @@ const ScrollArrow = ({
   );
 };
 
-const ProjectCard = ({ project }: { project: typeof allProjects[0] }) => {
+type ProjectCardProps = {
+  project: typeof allProjects[0];
+  isHovered: boolean;
+  anyHovered: boolean;
+  hoverScale: number;
+  onHover: (hovered: boolean) => void;
+};
+
+const ProjectCard = ({ project, isHovered, anyHovered, hoverScale, onHover }: ProjectCardProps) => {
   const projectImage = PlaceHolderImages.find(img => img.id === project.imageId);
+  const slotRef = useRef<HTMLDivElement>(null);
+  // Horizontal shift that brings this card to the middle of the row.
+  const [centeringShift, setCenteringShift] = useState(0);
+
+  const handleEnter = () => {
+    const slot = slotRef.current;
+    const row = slot?.parentElement;
+    if (slot && row) {
+      const box = slot.getBoundingClientRect();
+      const bounds = row.getBoundingClientRect();
+      setCenteringShift((bounds.left + bounds.width / 2) - (box.left + box.width / 2));
+    }
+    onHover(true);
+  };
+
+  // All transforms are inline rather than Tailwind utilities: the centering
+  // shift is computed at runtime, and mixing it with Tailwind's variable-based
+  // transform stack would fight over the same `transform` property.
+  const transform = isHovered
+    ? `translateX(${centeringShift}px) scale(${hoverScale})`
+    : anyHovered
+      ? `scale(${DIMMED_SCALE})`
+      : undefined;
 
   return (
+    // The slot owns the hover and never moves. Transforming it instead would
+    // slide the card out from under the cursor, firing mouseleave, resetting it,
+    // and oscillating - the shift for an edge card is wider than the card itself.
+    // It also makes the shift measurable from a rect that is never transformed.
     <div
-      className={cn(
-        'group/card w-80 shrink-0 py-6 snap-start',
-        'transition-all duration-300 ease-out',
-        // Any card hovered shrinks and dims the whole row...
-        'group-hover/row:scale-[0.94] group-hover/row:opacity-50',
-        // ...and the one actually under the cursor overrides that and grows.
-        // ! is needed because both rules land at the same specificity.
-        'hover:!scale-[1.06] hover:!opacity-100 hover:z-20',
-      )}
+      ref={slotRef}
+      onMouseEnter={handleEnter}
+      onMouseLeave={() => onHover(false)}
+      style={{ zIndex: isHovered ? 30 : undefined }}
+      className="group/card w-80 shrink-0 py-10 snap-start"
     >
+      <div
+        style={{
+          transform,
+          opacity: anyHovered && !isHovered ? 0.45 : 1,
+        }}
+        className="h-full transition-[transform,opacity] duration-300 ease-out"
+      >
       <Card
         className={cn(
           'flex h-full flex-col overflow-hidden bg-card/60 border border-white/10',
@@ -139,6 +188,7 @@ const ProjectCard = ({ project }: { project: typeof allProjects[0] }) => {
           </div>
         </div>
       </Card>
+      </div>
     </div>
   )
 }
@@ -150,6 +200,8 @@ export default function Projects() {
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
   const [rowWidth, setRowWidth] = useState<number | undefined>(undefined);
+  const [visibleCards, setVisibleCards] = useState(1);
+  const [hoveredName, setHoveredName] = useState<string | null>(null);
 
   const filteredProjects = useMemo(() => {
     return allProjects.filter(p => p.category === activeCategory);
@@ -178,8 +230,9 @@ export default function Projects() {
     const probe = measureRef.current;
     if (!probe) return;
     const refit = () => {
-      const { width } = fitCards(probe.clientWidth);
+      const { width, count } = fitCards(probe.clientWidth);
       setRowWidth(width);
+      setVisibleCards(count);
       syncArrows();
     };
     refit();
@@ -229,14 +282,27 @@ export default function Projects() {
           ref={rowRef}
           className={cn(
             'group/row flex w-full gap-6 px-4 overflow-x-auto no-scrollbar items-stretch',
-            'h-[clamp(23rem,56vh,28rem)]',
+            // Capped at 30rem: the wrapper's py-10 plus this ceiling is what
+            // keeps a card scaled to 1.18 inside the row instead of clipped.
+            'h-[clamp(23rem,60vh,30rem)]',
             // Snap to card start edges; scroll-pl matches the row padding so a
             // snapped card sits just inside it rather than under it.
             'snap-x snap-mandatory scroll-pl-4'
           )}
         >
           {filteredProjects.map((project) => (
-            <ProjectCard key={project.name} project={project} />
+            <ProjectCard
+              key={project.name}
+              project={project}
+              isHovered={hoveredName === project.name}
+              anyHovered={hoveredName !== null}
+              hoverScale={hoverScaleFor(visibleCards)}
+              onHover={(hovered) =>
+                setHoveredName((current) =>
+                  hovered ? project.name : current === project.name ? null : current
+                )
+              }
+            />
           ))}
         </div>
 
