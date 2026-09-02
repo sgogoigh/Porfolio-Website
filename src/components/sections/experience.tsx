@@ -64,7 +64,7 @@ export default function Experience() {
         {experience.map((item, index) => (
           <div
             key={item.company}
-            className="relative flex items-center mb-6 short:mb-2.5 last:mb-0 w-full"
+            className="relative flex items-center mb-5 md:mb-6 short:mb-2.5 last:mb-0 w-full"
           >
             {/* The open card spans the axis, so its dot would land inside the card. */}
             <div
