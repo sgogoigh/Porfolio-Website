@@ -3,21 +3,13 @@
 import React from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import * as z from 'zod'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form'
 import { useToast } from '@/hooks/use-toast'
-import { Mail, MessageSquare, Send, User } from 'lucide-react'
-
-const formSchema = z.object({
-  fullName: z.string().min(2, { message: 'Full name must be at least 2 characters.' }),
-  email: z.string().email({ message: 'Please enter a valid email address.' }),
-  message: z.string().min(10, { message: 'Message must be at least 10 characters.' }).max(500, { message: "Message can't exceed 500 characters."}),
-})
-
-type FormData = z.infer<typeof formSchema>
+import { Loader2, Mail, MessageSquare, Send, User } from 'lucide-react'
+import { contactSchema, type ContactFormData } from '@/lib/contact-schema'
 
 /** Shared field chrome: taller, softer, with a cyan focus ring. */
 const fieldClass =
@@ -30,8 +22,8 @@ const iconClass =
 
 export default function Connect() {
   const { toast } = useToast()
-  const form = useForm<FormData>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<ContactFormData>({
+    resolver: zodResolver(contactSchema),
     defaultValues: {
       fullName: '',
       email: '',
@@ -39,19 +31,46 @@ export default function Connect() {
     },
   })
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
-    const subject = encodeURIComponent(`Connection from ${data.fullName}`)
-    const body = encodeURIComponent(`Email: ${data.email}\n\nMessage:\n${data.message}`)
-    const mailtoLink = `mailto:sgogoi2004@gmail.com?subject=${subject}&body=${body}`
+  /**
+   * Posts to /api/contact, which sends the mail server-side. This used to
+   * build a mailto: link, which sends nothing by itself - it only opens the
+   * visitor's mail app, and does nothing at all if they have none configured.
+   *
+   * Awaited, so react-hook-form keeps isSubmitting true for the whole request
+   * and the button stays disabled and spinning.
+   */
+  const onSubmit: SubmitHandler<ContactFormData> = async (data) => {
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      })
 
-    window.location.href = mailtoLink
+      if (!response.ok) {
+        const { error } = await response.json().catch(() => ({ error: null }))
+        toast({
+          variant: 'destructive',
+          title: 'Message not sent',
+          description:
+            error ?? 'Something went wrong. You can also reach me at sgogoi2004@gmail.com.',
+        })
+        return
+      }
 
-    toast({
-      title: "Email Client Opening",
-      description: "Your default email client should now be open to send your message.",
-    })
-
-    form.reset();
+      toast({
+        title: 'Message sent',
+        description: `Thanks, ${data.fullName.split(' ')[0]} - it has landed in my inbox. I'll reply to ${data.email}.`,
+      })
+      form.reset()
+    } catch {
+      // Offline, or the request never left the browser.
+      toast({
+        variant: 'destructive',
+        title: 'Could not reach the server',
+        description: 'Check your connection, or email me directly at sgogoi2004@gmail.com.',
+      })
+    }
   }
 
   return (
@@ -130,8 +149,17 @@ export default function Connect() {
               className="group h-14 short:h-12 w-full rounded-xl bg-gradient-to-r from-primary to-accent text-base font-bold text-primary-foreground transition-all duration-300 hover:shadow-[0_0_28px_-4px_hsl(var(--primary)/0.6)] hover:brightness-110"
               disabled={form.formState.isSubmitting}
             >
-              Send Message
-              <Send className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+              {form.formState.isSubmitting ? (
+                <>
+                  Sending
+                  <Loader2 className="ml-2 h-4 w-4 animate-spin" />
+                </>
+              ) : (
+                <>
+                  Send Message
+                  <Send className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                </>
+              )}
             </Button>
           </form>
         </Form>
