@@ -37,40 +37,52 @@ export default function Hero() {
     // pb clears the absolutely-positioned scroll arrow below, which the socials
     // and resume button used to sit on top of. The arrow itself is unchanged.
     <div className="relative w-full h-full flex flex-col items-center justify-center gap-8 pt-8 pb-8 md:pb-24">
-      <div className="flex min-h-0 flex-grow items-center w-full">
-        <div className="grid md:grid-cols-5 gap-8 items-center w-full">
-          <div className="md:col-span-3 flex flex-col items-center text-center">
+      <div className="flex min-h-0 flex-grow items-center justify-center w-full">
+        {/* A centred flex pair rather than a 3/2 grid: the grid centred the name
+            inside its own columns, which left the name-plus-portrait unit
+            off-centre on the page and pushed the two apart. */}
+        <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8">
+          <div className="flex flex-col items-center md:items-end text-center md:text-right">
             <h1
-              className={cn("font-serif text-5xl sm:text-6xl md:text-8xl font-bold tracking-tighter")}
+              className={cn(
+                'font-serif font-bold tracking-tighter leading-[0.95] whitespace-nowrap',
+                'text-6xl sm:text-7xl lg:text-8xl xl:text-[7rem]',
+                'short:text-5xl sm:short:text-6xl lg:short:text-7xl xl:short:text-7xl'
+              )}
             >
               Sunny Gogoi
             </h1>
-            <p className="mt-4 text-lg md:text-xl text-muted-foreground font-manrope">
-              Software Developer &amp; AI Engineer
+            <p className="mt-3 text-lg md:text-xl text-muted-foreground font-manrope">
+              AI &amp; ML Engineer
             </p>
           </div>
-          <div className="md:col-span-2 relative flex items-center justify-center h-64 md:h-full">
+          <div className="relative flex shrink-0 items-center justify-center">
             {profileImage && (
               // perspective gives the flip real depth instead of a flat squash.
               <div className="relative flex items-center justify-center [perspective:1200px]">
-                {/* Static halo — stays put while the portrait hops, so the glow
-                    reads as light in the room rather than part of the avatar. */}
+                {/* Static halo — stays put while the portrait flies, so the glow
+                    reads as light in the room rather than part of the avatar.
+                    Two layers: a wide soft bloom plus a tighter, brighter core. */}
                 <div
                   aria-hidden
-                  className="absolute h-56 w-56 md:h-64 md:w-64 rounded-full bg-gradient-to-br from-primary/50 to-accent/50 blur-3xl animate-ring-pulse"
+                  className="absolute h-72 w-72 md:h-80 md:w-80 short:h-56 short:w-56 rounded-full bg-gradient-to-br from-primary/60 to-accent/60 blur-3xl animate-ring-pulse"
+                />
+                <div
+                  aria-hidden
+                  className="absolute h-56 w-56 md:h-64 md:w-64 short:h-44 short:w-44 rounded-full bg-primary/40 blur-2xl animate-ring-pulse"
                 />
                 {/* Frame + photo flip together as one unit. backface-visibility
                     hides the composite through the back half of the turn, so the
                     portrait disappears edge-on rather than showing mirrored. */}
-                <div className="relative animate-coin-toss [backface-visibility:hidden]">
-                  <div className="rounded-full p-[3px] bg-gradient-to-br from-primary via-accent to-primary shadow-[0_0_45px_-8px_hsl(var(--primary)/0.7)]">
+                <div className="relative animate-coin-toss [backface-visibility:hidden] [--toss-lift:120px] short:[--toss-lift:40px]">
+                  <div className="rounded-full p-[3px] bg-gradient-to-br from-primary via-accent to-primary shadow-[0_0_80px_-4px_hsl(var(--primary)/0.9),0_0_140px_-20px_hsl(var(--accent)/0.7)]">
                     <Image
                       src={profileImage.imageUrl}
                       alt={profileImage.description}
                       data-ai-hint={profileImage.imageHint}
                       width={256}
                       height={256}
-                      className="h-52 w-52 md:h-60 md:w-60 rounded-full object-cover aspect-square border-[3px] border-background"
+                      className="h-52 w-52 md:h-60 md:w-60 short:h-40 short:w-40 rounded-full object-cover aspect-square border-[3px] border-background"
                     />
                   </div>
                 </div>

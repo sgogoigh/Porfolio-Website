@@ -100,18 +100,21 @@ export default {
            carry no rotation, so the fast part is clearly the airborne spin.
            Two full turns keep the end state (720deg) identical to the start, so
            the loop is seamless and it always rests face-on. */
-        /* Percentages are against the 10s duration below:
-             0-35%   rest at baseline      (3.5s)
-             35-50%  rise slowly to apex   (1.5s)
-             50-67%  two turns at the apex (1.7s - the spin, kept slow enough to
-                                            actually follow)
-             67-82%  settle back down      (1.5s)
-             82-100% rest                  (1.8s)                              */
+        /* Percentages are against the 7s duration below:
+             0-30%   rest at baseline      (2.1s)
+             30-46%  climb to apex         (1.12s)
+             46-68%  two turns at the apex (1.54s - the spin, still over the 1.5s
+                                            floor so it stays followable)
+             68-85%  fall back down        (1.19s)
+             85-100% rest                  (1.05s)
+           Apex height comes from --toss-lift so it can be dialled down on short
+           viewports, where a tall flight would clip out of the section or slide
+           up behind the header. */
         'coin-toss': {
-          '0%, 35%': { transform: 'translateY(0) rotateY(0deg) scale(1)' },
-          '50%': { transform: 'translateY(-72px) rotateY(0deg) scale(1.04)' },
-          '67%': { transform: 'translateY(-72px) rotateY(720deg) scale(1.04)' },
-          '82%, 100%': { transform: 'translateY(0) rotateY(720deg) scale(1)' },
+          '0%, 30%': { transform: 'translateY(0) rotateY(0deg) scale(1)' },
+          '46%': { transform: 'translateY(calc(var(--toss-lift, 120px) * -1)) rotateY(0deg) scale(1.08)' },
+          '68%': { transform: 'translateY(calc(var(--toss-lift, 120px) * -1)) rotateY(720deg) scale(1.08)' },
+          '85%, 100%': { transform: 'translateY(0) rotateY(720deg) scale(1)' },
         },
         'ring-pulse': {
           '0%, 100%': { opacity: '0.55', transform: 'scale(1)' },
@@ -121,7 +124,7 @@ export default {
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
-        'coin-toss': 'coin-toss 10s ease-in-out infinite',
+        'coin-toss': 'coin-toss 7s ease-in-out infinite',
         'ring-pulse': 'ring-pulse 3s ease-in-out infinite',
       },
       backgroundImage: {
