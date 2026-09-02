@@ -113,6 +113,30 @@
 }
 
 @layer utilities {
+  /* Fade for the decorative gutter art. It is translucent line work sitting
+     behind everything, so it is fine for the tail to pass under content - what
+     is not fine is a hard edge where the curves stop, which reads as the
+     artwork being cut off. So the ramp is gradual and only reaches full
+     transparency at the very end: the lines dissolve instead of ending. */
+  .gutter-fade {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      #000 0%,
+      #000 30%,
+      rgba(0, 0, 0, 0.55) 58%,
+      rgba(0, 0, 0, 0.22) 78%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      #000 0%,
+      #000 30%,
+      rgba(0, 0, 0, 0.55) 58%,
+      rgba(0, 0, 0, 0.22) 78%,
+      transparent 100%
+    );
+  }
+
   .main-scrollbar-hide::-webkit-scrollbar {
     display: none;
   }

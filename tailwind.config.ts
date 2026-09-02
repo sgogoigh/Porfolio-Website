@@ -21,6 +21,10 @@ export default {
       // the expandable sections enough to keep them from clipping.
       screens: {
         short: { raw: '(max-height: 720px)' },
+        // The content column is max-w-7xl (1280px), so a margin worth
+        // decorating starts at about 1360px. Below that the art would be all
+        // tail and no shape, so it is not rendered.
+        gutter: '1360px',
       },
       fontFamily: {
         body: ['Inter', 'sans-serif'],
@@ -133,6 +137,43 @@ export default {
           '45%': { opacity: '0.45', transform: 'scale(0.98)' },
           '70%': { opacity: '0.7', transform: 'scale(1.02)' },
         },
+        /* The three ambient gutter fields. Long periods (28-40s) and unequal
+           paths, so the margins read as slowly moving light rather than as
+           anything that draws the eye off the content. Translations only -
+           no opacity flicker - and scale stays near 1 so the blur cost does
+           not change much frame to frame. */
+        'drift-a': {
+          '0%, 100%': { transform: 'translate3d(0, 0, 0) scale(1)' },
+          '50%': { transform: 'translate3d(6rem, -4rem, 0) scale(1.12)' },
+        },
+        'drift-b': {
+          '0%, 100%': { transform: 'translate3d(0, 0, 0) scale(1.08)' },
+          '40%': { transform: 'translate3d(-5rem, 5rem, 0) scale(0.94)' },
+          '70%': { transform: 'translate3d(-2rem, -3rem, 0) scale(1.04)' },
+        },
+        'drift-c': {
+          '0%, 100%': { transform: 'translate3d(0, 0, 0) scale(0.96)' },
+          '55%': { transform: 'translate3d(4rem, -6rem, 0) scale(1.1)' },
+        },
+        /* Gutter line work. The silk curves slide and skew a little on three
+           unequal periods so the set never moves as one block, and the arcs
+           turn slowly enough to be felt rather than watched. */
+        'silk-a': {
+          '0%, 100%': { transform: 'translate(0, 0) scaleX(1)' },
+          '50%': { transform: 'translate(18px, -26px) scaleX(1.06)' },
+        },
+        'silk-b': {
+          '0%, 100%': { transform: 'translate(0, 0) scaleX(1.03)' },
+          '45%': { transform: 'translate(-22px, 30px) scaleX(0.95)' },
+        },
+        'silk-c': {
+          '0%, 100%': { transform: 'translate(0, 0) scaleX(0.97)' },
+          '60%': { transform: 'translate(12px, 22px) scaleX(1.05)' },
+        },
+        'arc-spin': {
+          from: { transform: 'rotate(0deg)' },
+          to: { transform: 'rotate(360deg)' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -140,6 +181,13 @@ export default {
         'coin-toss': 'coin-toss 9s ease-in-out infinite',
         'ring-pulse': 'ring-pulse 4.3s ease-in-out infinite',
         'ring-pulse-alt': 'ring-pulse-alt 6.7s ease-in-out infinite',
+        'drift-a': 'drift-a 31s ease-in-out infinite',
+        'drift-b': 'drift-b 40s ease-in-out infinite',
+        'drift-c': 'drift-c 28s ease-in-out infinite',
+        'silk-a': 'silk-a 34s ease-in-out infinite',
+        'silk-b': 'silk-b 43s ease-in-out infinite',
+        'silk-c': 'silk-c 38s ease-in-out infinite',
+        'arc-spin': 'arc-spin 180s linear infinite',
       },
       backgroundImage: {
         'grid-white/[0.02]': `linear-gradient(to right, theme(colors.white / 2%) 1px, transparent 1px), linear-gradient(to bottom, theme(colors.white / 2%) 1px, transparent 1px)`,
