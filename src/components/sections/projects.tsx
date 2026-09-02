@@ -138,7 +138,9 @@ const ProjectCard = ({ project, isHovered, anyHovered, hoverScale, onHover }: Pr
       >
       <Card
         className={cn(
-          'flex h-full flex-col overflow-hidden bg-card/60 border border-white/10',
+          // Opaque, not bg-card/60: the page background bled through the card,
+          // which washed out the text of the enlarged one.
+          'flex h-full flex-col overflow-hidden bg-card border border-white/10',
           'transition-[border-color,box-shadow] duration-300',
           'group-hover/card:border-primary/60',
           'group-hover/card:shadow-[0_18px_50px_-12px_hsl(var(--primary)/0.45)]'
@@ -165,7 +167,7 @@ const ProjectCard = ({ project, isHovered, anyHovered, hoverScale, onHover }: Pr
           {/* Clamped to 6 on hover rather than unbounded: every description fits
               well inside 6 lines, so this shows them in full while still giving
               the card a hard height bound. */}
-          <p className="text-sm short:text-xs text-muted-foreground line-clamp-2 group-hover/card:line-clamp-6 short:group-hover/card:line-clamp-4">
+          <p className="text-sm short:text-xs text-muted-foreground transition-colors duration-300 group-hover/card:text-foreground/90 line-clamp-2 group-hover/card:line-clamp-6 short:group-hover/card:line-clamp-4">
             {project.description}
           </p>
 
