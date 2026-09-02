@@ -27,6 +27,7 @@ export default {
         headline: ['Space Grotesk', 'sans-serif'],
         code: ['monospace'],
         display: ['Clash Grotesk', 'sans-serif'],
+        eagle: ['var(--font-eagle-horizon)', 'cursive'],
         manrope: ['Manrope', 'sans-serif'],
         serif: ['"Times New Roman"', 'Times', 'serif'],
       },

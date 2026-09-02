@@ -1,7 +1,19 @@
 import type {Metadata} from 'next';
+import localFont from 'next/font/local';
 import './globals.css';
 import { cn } from '@/lib/utils';
 import { Toaster } from "@/components/ui/toaster"
+
+// Self-hosted via next/font so it is preloaded and swaps without layout shift.
+// Licence: free for personal use only (Letterara Studio) - commercial use needs
+// a licence, see the vendor's READ ME.
+const eagleHorizon = localFont({
+  src: './fonts/EagleHorizonP.ttf',
+  variable: '--font-eagle-horizon',
+  display: 'swap',
+  weight: '400',
+  style: 'normal',
+});
 
 export const metadata: Metadata = {
   title: 'Sunny Gogoi',
@@ -14,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className={cn('dark', eagleHorizon.variable)}>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
