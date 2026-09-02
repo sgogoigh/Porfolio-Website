@@ -13,6 +13,8 @@ import { sections } from '@/lib/data'
 import { cn } from '@/lib/utils'
 import { SCROLL_CONTAINER_ID } from '@/lib/smooth-scroll'
 import ParticlesComponent from '@/components/layout/particles'
+import Ambient from '@/components/layout/ambient'
+import GutterArt from '@/components/layout/gutter-art'
 
 type SectionId = typeof sections[number]['id'];
 
@@ -93,6 +95,8 @@ export default function Home() {
 
   return (
     <div className="flex flex-col h-screen">
+      <Ambient />
+      <GutterArt />
       <ParticlesComponent />
       <Header ref={headerRef} activeSection={activeSection} isScrolled={isScrolled} />
       <div
@@ -116,9 +120,17 @@ export default function Home() {
               )}
             >
               {/* Every section is exactly one viewport tall. overflow-hidden is
-                  the backstop: sections are laid out to fit, and nothing is
-                  allowed to start its own scroll area. */}
-              <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-1 min-h-0 overflow-hidden pb-4">
+                  the backstop for the sections whose content can grow - the
+                  experience accordion, the projects row, the certifications
+                  grid - which must never start their own scroll area.
+                  Home is deliberately exempt. Its content is fixed and
+                  measured to fit, whereas the clip was cutting 50px off the
+                  portrait halo's blurred bloom at every width, which showed as
+                  a hard vertical edge beside the image. */}
+              <div className={cn(
+                'w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-1 min-h-0 pb-4',
+                id !== 'home' && 'overflow-hidden'
+              )}>
                 {sectionComponents[id]}
               </div>
               {/* The footer lives inside the last section rather than after it,
