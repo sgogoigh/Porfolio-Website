@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/sheet"
 import { Button } from '@/components/ui/button'
 import { Menu } from 'lucide-react'
+import { smoothScrollToSection } from '@/lib/smooth-scroll'
 
 type HeaderProps = {
   activeSection: string;
@@ -26,6 +27,13 @@ const Header = React.forwardRef<HTMLElement, HeaderProps>(({ activeSection, isSc
   useEffect(() => {
     setIsClient(true)
   }, [])
+
+  // The hrefs stay real so the links keep their semantics and still work without
+  // JS; this just takes over the scroll to ease it instead of jumping.
+  const handleNavClick = (event: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    event.preventDefault();
+    smoothScrollToSection(id);
+  };
 
   return (
     <header
@@ -43,6 +51,7 @@ const Header = React.forwardRef<HTMLElement, HeaderProps>(({ activeSection, isSc
               <li key={section.id}>
                 <a
                   href={`#${section.id}`}
+                  onClick={(e) => handleNavClick(e, section.id)}
                   className={cn(
                     'relative px-3 py-2 text-sm font-medium transition-colors duration-300',
                     'hover:text-primary',
@@ -78,7 +87,10 @@ const Header = React.forwardRef<HTMLElement, HeaderProps>(({ activeSection, isSc
                     <SheetClose key={section.id} asChild>
                       <a
                         href={`#${section.id}`}
-                        onClick={() => setIsSheetOpen(false)}
+                        onClick={(e) => {
+                          handleNavClick(e, section.id);
+                          setIsSheetOpen(false);
+                        }}
                         className={cn(
                           "transition-colors hover:text-primary",
                           activeSection === section.id ? "text-primary" : "text-muted-foreground"

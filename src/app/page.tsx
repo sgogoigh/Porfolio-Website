@@ -11,6 +11,7 @@ import Connect from '@/components/sections/connect'
 import Footer from '@/components/layout/footer'
 import { sections } from '@/lib/data'
 import { cn } from '@/lib/utils'
+import { SCROLL_CONTAINER_ID } from '@/lib/smooth-scroll'
 import ParticlesComponent from '@/components/layout/particles'
 
 type SectionId = typeof sections[number]['id'];
@@ -94,8 +95,9 @@ export default function Home() {
     <div className="flex flex-col h-screen">
       <ParticlesComponent />
       <Header ref={headerRef} activeSection={activeSection} isScrolled={isScrolled} />
-      <div 
+      <div
         ref={mainContainerRef}
+        id={SCROLL_CONTAINER_ID}
         className="flex-grow overflow-y-auto no-scrollbar"
         style={{
           scrollSnapType: 'y mandatory',

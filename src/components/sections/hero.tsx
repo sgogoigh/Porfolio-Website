@@ -8,6 +8,7 @@ import { socialLinks } from '@/lib/data'
 import { Mail, Linkedin, Twitter } from 'lucide-react'
 import { PlaceHolderImages } from '@/lib/placeholder-images'
 import { cn } from '@/lib/utils'
+import { smoothScrollToSection } from '@/lib/smooth-scroll'
 
 const iconMap = {
   email: Mail,
@@ -97,7 +98,13 @@ export default function Hero() {
 
       <div className="absolute bottom-2 hidden md:block">
         <Button asChild variant="ghost" className="text-muted-foreground hover:text-primary animate-bounce">
-          <a href="#about">
+          <a
+            href="#about"
+            onClick={(e) => {
+              e.preventDefault();
+              smoothScrollToSection('about');
+            }}
+          >
             <ArrowDown className="w-6 h-6" />
             <span className="sr-only">Scroll to About section</span>
           </a>
