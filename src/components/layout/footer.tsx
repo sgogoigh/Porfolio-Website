@@ -26,7 +26,9 @@ export default function Footer() {
   const footerSocials = socialLinks.filter(link => link.id !== 'email' && link.id !== 'twitter');
   
   return (
-    <footer className="w-full py-6 border-t border-white/10" style={{scrollSnapAlign: 'end'}}>
+    // No scroll-snap alignment: the footer is inside the last section now, not a
+    // snap target of its own.
+    <footer className="w-full shrink-0 bg-background py-4 border-t border-white/10">
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-center">
         <p className="text-sm text-muted-foreground">
           © {new Date().getFullYear()} Sunny Gogoi — Built with ❤️ using modern web technologies.

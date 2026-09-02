@@ -118,12 +118,15 @@ export default function Home() {
               {/* Every section is exactly one viewport tall. overflow-hidden is
                   the backstop: sections are laid out to fit, and nothing is
                   allowed to start its own scroll area. */}
-              <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full min-h-0 overflow-hidden pb-4">
+              <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-1 min-h-0 overflow-hidden pb-4">
                 {sectionComponents[id]}
               </div>
+              {/* The footer lives inside the last section rather than after it,
+                  so it is already on screen when Connect snaps into view instead
+                  of needing another scroll to reach. */}
+              {id === 'connect' && <Footer />}
             </section>
           ))}
-          <Footer />
         </main>
       </div>
     </div>

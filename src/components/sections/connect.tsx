@@ -21,7 +21,7 @@ type FormData = z.infer<typeof formSchema>
 
 /** Shared field chrome: taller, softer, with a cyan focus ring. */
 const fieldClass =
-  'h-14 rounded-xl border-white/10 bg-white/[0.04] pl-12 text-base ' +
+  'h-14 short:h-12 rounded-xl border-white/10 bg-white/[0.04] pl-12 text-base ' +
   'placeholder:text-muted-foreground/60 transition-all duration-300 ' +
   'hover:border-white/20 focus-visible:border-primary/50 focus-visible:ring-2 focus-visible:ring-primary/50'
 
@@ -55,25 +55,25 @@ export default function Connect() {
   }
 
   return (
-    <div className="flex h-full w-full flex-col items-center justify-center gap-6">
+    <div className="flex h-full w-full flex-col items-center justify-center gap-6 short:gap-3">
       <div className="relative text-center">
         {/* Soft bloom behind the wordmark. */}
         <div
           aria-hidden
           className="absolute inset-0 -z-10 bg-gradient-to-r from-primary/25 to-accent/25 blur-3xl"
         />
-        <h2 className="font-headline text-5xl font-bold tracking-tight md:text-7xl bg-gradient-to-r from-primary via-foreground to-accent bg-clip-text text-transparent pb-1">
+        <h2 className="font-headline text-5xl font-bold tracking-tight md:text-7xl short:text-4xl bg-gradient-to-r from-primary via-foreground to-accent bg-clip-text text-transparent pb-1">
           Let&apos;s Connect
         </h2>
-        <p className="mt-2 text-sm text-muted-foreground md:text-base">
+        <p className="mt-2 short:mt-1 text-sm text-muted-foreground md:text-base">
           Have a question or want to work together? Drop me a line.
         </p>
       </div>
 
-      <div className="w-full max-w-xl rounded-2xl border border-white/10 bg-card/40 p-5 backdrop-blur-sm md:p-7">
+      <div className="w-full max-w-xl rounded-2xl border border-white/10 bg-card/40 p-5 short:p-3 backdrop-blur-sm md:p-7">
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-            <div className="grid gap-4 sm:grid-cols-2">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 short:space-y-2.5">
+            <div className="grid gap-4 short:gap-2.5 sm:grid-cols-2">
               <FormField
                 control={form.control}
                 name="fullName"
@@ -116,7 +116,7 @@ export default function Connect() {
                         placeholder="What do you wanna talk about?"
                         {...field}
                         rows={4}
-                        className={`peer ${fieldClass} h-auto min-h-[7rem] py-4 pl-12`}
+                        className={`peer ${fieldClass} h-auto min-h-[7rem] short:min-h-[5rem] py-4 short:py-3 pl-12`}
                       />
                       <MessageSquare className="pointer-events-none absolute left-4 top-4 h-5 w-5 text-muted-foreground/60 transition-colors peer-focus:text-primary" />
                     </div>
@@ -127,7 +127,7 @@ export default function Connect() {
             />
             <Button
               type="submit"
-              className="group h-14 w-full rounded-xl bg-gradient-to-r from-primary to-accent text-base font-bold text-primary-foreground transition-all duration-300 hover:shadow-[0_0_28px_-4px_hsl(var(--primary)/0.6)] hover:brightness-110"
+              className="group h-14 short:h-12 w-full rounded-xl bg-gradient-to-r from-primary to-accent text-base font-bold text-primary-foreground transition-all duration-300 hover:shadow-[0_0_28px_-4px_hsl(var(--primary)/0.6)] hover:brightness-110"
               disabled={form.formState.isSubmitting}
             >
               Send Message
