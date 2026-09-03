@@ -8,6 +8,9 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: path.resolve(__dirname),
   },
+  // `next dev` otherwise writes AGENTS.md and CLAUDE.md into the repo on every
+  // run. We would rather not carry framework-authored agent docs here.
+  agentRules: false,
   images: {
     remotePatterns: [
       {
