@@ -7,6 +7,23 @@ export const sections = [
   { id: 'connect', title: 'Connect' },
 ] as const;
 
+/**
+ * The resume. To swap it, drop the new PDF into public/ and change `file` to
+ * its filename - nothing else needs touching.
+ *
+ * It is served from our own origin rather than a Drive share link on purpose:
+ * the download attribute is ignored cross-origin, so a Drive link can only
+ * ever open the PDF in the viewer instead of saving it.
+ *
+ * `downloadAs` is what the visitor's browser saves the file as, so the file in
+ * public/ can be named anything convenient (resume-v4-final.pdf) while the
+ * download still arrives with a presentable name.
+ */
+export const resume = {
+  file: 'Sunny_Gogoi_Resume.pdf',
+  downloadAs: 'Sunny_Gogoi_Resume.pdf',
+};
+
 export const socialLinks = [
   { id: 'email', label: 'Email', url: 'mailto:sgogoi2004@gmail.com' },
   { id: 'linkedin', label: 'LinkedIn', url: 'https://linkedin.com/in/sunnygogoi' },
@@ -90,8 +107,16 @@ export const projects = [
     category: 'Research',
     description: 'A 3-arm benchmark (monolithic prompt vs. graph-RAG vs. vector RAG) achieving 53% token reduction at higher judged quality using a 42-node workflow graph with hybrid retrieval.',
     techIcons: ['PythonIcon', 'LangChainIcon', 'GroqIcon'],
-    url: '#',
+    url: 'https://github.com/sgogoigh/Graph-RAG-Tokens-Research',
     imageId: 'project-research-1',
+  },
+  {
+    name: 'Privacy Preserving Global Satellite Image Classification with Federated Learning',
+    category: 'Research',
+    description: 'A privacy-preserving federated learning approach for global satellite image classification, achieving state-of-the-art performance while maintaining data privacy.',
+    techIcons: ['PythonIcon', 'LangChainIcon', 'GroqIcon'],
+    url: 'https://github.com/sgogoigh/Graph-RAG-Tokens-Research',
+    imageId: 'project-research-satellite',
   },
   {
     name: 'Federated GraphSAGE for APT Detection',
@@ -106,7 +131,7 @@ export const projects = [
     category: 'Research',
     description: 'An LSTM-RNN captioning model with a CNN feature extractor, reaching 93% test accuracy on image-to-caption generation with TensorFlow and Keras.',
     techIcons: ['PythonIcon', 'TensorFlowIcon', 'KerasIcon'],
-    url: '#',
+    url: 'https://github.com/sgogoigh/AI-Image-Captioning-Model',
     imageId: 'project-research-3',
   },
   {
@@ -123,7 +148,7 @@ export const projects = [
     category: 'AI/ML',
     description: 'A real-time, full-duplex voice AI that narrates slide decks and handles spoken interruptions with sub-3.6s latency across a 6-stage speech and RAG pipeline.',
     techIcons: ['PythonIcon', 'GroqIcon', 'DockerIcon'],
-    url: '#',
+    url: 'https://github.com/sgogoigh/Chatterbot-AI',
     imageId: 'project-ai-5',
   },
   {
@@ -131,7 +156,7 @@ export const projects = [
     category: 'AI/ML',
     description: 'A fine-tuned Llama 3 model trained on 2,800 curated movie scripts, integrated with Gemini Veo-3 for automatic 8-second trailer generation.',
     techIcons: ['PythonIcon', 'GeminiIcon', 'HuggingFaceIcon'],
-    url: 'https://github.com/sgogoigh/Character-Video-Generation',
+    url: 'https://github.com/sgogoigh/Dreamers-Movie-Script-Generator',
     imageId: 'project-ai-6',
   },
   {
@@ -139,31 +164,15 @@ export const projects = [
     category: 'AI/ML',
     description: 'A LoRA fine-tuned Mistral 7.3B model for summarization and Q&A over college notes, with OCR-based auto-extraction from PDFs and slides.',
     techIcons: ['PythonIcon', 'HuggingFaceIcon', 'FastApiIcon'],
-    url: '#',
+    url: 'https://github.com/sgogoigh/Study-Easy',
     imageId: 'project-ai-8',
-  },
-  {
-    name: 'Movie Recommendation System',
-    category: 'AI/ML',
-    description: 'Content-based movie recommendations over the TMDB 10,000-title dataset using cosine similarity, deployed as an interactive Streamlit app.',
-    techIcons: ['PythonIcon', 'PandasIcon', 'StreamlitIcon'],
-    url: '#',
-    imageId: 'project-ai-9',
-  },
-  {
-    name: 'Spotify Song Recommendation System',
-    category: 'AI/ML',
-    description: 'A playlist-based song recommender built on Spotify\'s developer API, matching audio features via dot-product similarity and deployed on Streamlit.',
-    techIcons: ['PythonIcon', 'NumpyIcon', 'StreamlitIcon'],
-    url: '#',
-    imageId: 'project-ai-10',
   },
   {
     name: 'Premier League Table Prediction',
     category: 'AI/ML',
     description: 'Match outcome prediction over 13,000+ Premier League fixtures scraped from FBREF, modeling recent form and scoring trends.',
     techIcons: ['PythonIcon', 'PandasIcon', 'SqlIcon'],
-    url: '#',
+    url: 'https://github.com/sgogoigh/Premier-League-Table-Prediction',
     imageId: 'project-ai-11',
   },
   {

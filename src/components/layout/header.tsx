@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/sheet"
 import { Button } from '@/components/ui/button'
 import { Menu } from 'lucide-react'
+import { smoothScrollToSection } from '@/lib/smooth-scroll'
 
 type HeaderProps = {
   activeSection: string;
@@ -27,13 +28,22 @@ const Header = React.forwardRef<HTMLElement, HeaderProps>(({ activeSection, isSc
     setIsClient(true)
   }, [])
 
+  // The hrefs stay real so the links keep their semantics and still work without
+  // JS; this just takes over the scroll to ease it instead of jumping.
+  const handleNavClick = (event: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    event.preventDefault();
+    smoothScrollToSection(id);
+  };
+
   return (
     <header
       ref={ref}
-      style={{'--header-height': '4rem'} as React.CSSProperties}
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-        isScrolled ? 'py-2 bg-background/80 backdrop-blur-lg' : 'py-6'
+        // Opaque at all times, rather than transparent at the top and 80% once
+        // scrolled. It also gives the flying portrait something solid to pass
+        // behind instead of showing through the nav.
+        'fixed top-0 left-0 right-0 z-50 bg-background transition-all duration-300',
+        isScrolled ? 'py-2' : 'py-6'
       )}
     >
       <div className="container mx-auto flex justify-between md:justify-center items-center relative">
@@ -44,6 +54,7 @@ const Header = React.forwardRef<HTMLElement, HeaderProps>(({ activeSection, isSc
               <li key={section.id}>
                 <a
                   href={`#${section.id}`}
+                  onClick={(e) => handleNavClick(e, section.id)}
                   className={cn(
                     'relative px-3 py-2 text-sm font-medium transition-colors duration-300',
                     'hover:text-primary',
@@ -79,7 +90,10 @@ const Header = React.forwardRef<HTMLElement, HeaderProps>(({ activeSection, isSc
                     <SheetClose key={section.id} asChild>
                       <a
                         href={`#${section.id}`}
-                        onClick={() => setIsSheetOpen(false)}
+                        onClick={(e) => {
+                          handleNavClick(e, section.id);
+                          setIsSheetOpen(false);
+                        }}
                         className={cn(
                           "transition-colors hover:text-primary",
                           activeSection === section.id ? "text-primary" : "text-muted-foreground"

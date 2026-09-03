@@ -18,19 +18,19 @@ const TechIcon = ({ icon }: { icon: string }) => {
 export default function About() {
   const profileImage = PlaceHolderImages.find(img => img.id === 'profile-picture');
   const [isTechStackExpanded, setIsTechStackExpanded] = useState(false);
-  const initialTechCount = 10;
+  const initialTechCount = 12;
   const displayedTech = isTechStackExpanded ? techStack : techStack.slice(0, initialTechCount);
 
   return (
-    <div className="grid md:grid-cols-10 gap-12 md:gap-16 items-center">
-      <div className="md:col-span-6 flex flex-col gap-8">
-        <h2 className="font-headline text-4xl md:text-5xl font-bold text-center">About Me</h2>
-        <p className="text-muted-foreground text-center md:text-left">
-          I'm a passionate AI & ML Engineer with a knack for building efficient, scalable solutions. I thrive on turning complex problems into elegant software and uncovering insights from data to drive decision-making.
+    <div className="grid h-full md:grid-cols-10 gap-6 md:gap-12 short:gap-4 items-center content-center">
+      <div className="md:col-span-6 flex flex-col gap-5 short:gap-2.5">
+        <h2 className="font-headline text-4xl md:text-5xl short:text-3xl font-bold text-center">About Me</h2>
+        <p className="text-sm md:text-base short:text-xs text-muted-foreground text-center md:text-left">
+          I&apos;m a passionate AI &amp; ML Engineer with a knack for building efficient, scalable solutions. I thrive on turning complex problems into elegant software and uncovering insights from data to drive decision-making.
         </p>
 
         <Card className="bg-card/50 border-white/10">
-          <CardContent className="p-4">
+          <CardContent className="p-4 short:p-2.5">
             <div className="flex justify-between items-center">
               <p className="font-semibold">{education.college}</p>
               <p className="text-sm text-muted-foreground">{education.gradYear}</p>
@@ -42,12 +42,14 @@ export default function About() {
           </CardContent>
         </Card>
 
-        <div className="space-y-4">
-          <h3 className="font-headline text-2xl font-semibold text-center md:text-left">Tech Stack</h3>
-          <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 gap-4">
+        <div className="space-y-3 short:space-y-1.5">
+          <h3 className="font-headline text-xl md:text-2xl short:text-base font-semibold text-center md:text-left">Tech Stack</h3>
+          {/* flex-wrap packs the tiles tightly; an equal-fraction grid left big
+              gaps between them at this container width. */}
+          <div className="flex flex-wrap justify-center md:justify-start gap-3 short:gap-2">
             {displayedTech.map(tech => (
               <div key={tech.name} className="group [perspective:1000px]">
-                <div className="relative h-16 w-16 rounded-lg transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                <div className="relative h-14 w-14 short:h-11 short:w-11 rounded-lg transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
                   <div className="absolute inset-0 flex items-center justify-center bg-card/30 rounded-lg border border-white/10 [backface-visibility:hidden]">
                     <TechIcon icon={tech.icon} />
                   </div>
@@ -59,9 +61,9 @@ export default function About() {
             ))}
           </div>
           {techStack.length > initialTechCount && (
-             <div className="text-center">
-                <Button variant="ghost" onClick={() => setIsTechStackExpanded(!isTechStackExpanded)}>
-                {isTechStackExpanded ? 'Show Less' : 'Show More'}
+             <div className="text-center md:text-left">
+                <Button variant="ghost" size="sm" onClick={() => setIsTechStackExpanded(!isTechStackExpanded)}>
+                {isTechStackExpanded ? 'Show Less' : `Show ${techStack.length - initialTechCount} More`}
                 {isTechStackExpanded ? <ChevronUp className="ml-2 h-4 w-4" /> : <ChevronDown className="ml-2 h-4 w-4" />}
                 </Button>
             </div>
@@ -69,9 +71,9 @@ export default function About() {
         </div>
       </div>
 
-      <div className="md:col-span-4 relative flex justify-center items-center">
+      <div className="hidden md:col-span-4 relative md:flex justify-center items-center">
         {profileImage && (
-          <div className="relative w-56 h-56 md:w-64 md:h-64 group">
+          <div className="relative w-48 h-48 lg:w-60 lg:h-60 group">
              <div className="absolute inset-0 bg-gradient-to-br from-primary to-accent rounded-full blur-2xl opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
             <Image
               src={profileImage.imageUrl}

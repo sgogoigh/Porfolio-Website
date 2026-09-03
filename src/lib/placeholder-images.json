@@ -7,76 +7,64 @@
       "imageHint": "male portrait"
     },
     {
-      "id": "project-ai-3",
-      "description": "A futuristic robotics concept",
-      "imageUrl": "https://picsum.photos/seed/ai3/600/400",
-      "imageHint": "futuristic robotics"
-    },
-    {
       "id": "project-research-1",
-      "description": "A graph network visualization for RAG routing",
-      "imageUrl": "https://picsum.photos/seed/research1/600/400",
+      "description": "A network of connected nodes, for workflow-graph retrieval",
+      "imageUrl": "/projects/graph-rag.jpg",
       "imageHint": "workflow graph"
     },
     {
+      "id": "project-research-satellite",
+      "description": "Earth seen from orbit at night",
+      "imageUrl": "/projects/satellite-earth.jpg",
+      "imageHint": "satellite imagery"
+    },
+    {
       "id": "project-research-2",
-      "description": "A network security graph visualization",
-      "imageUrl": "https://picsum.photos/seed/research2/600/400",
-      "imageHint": "graph network security"
+      "description": "A padlock over a backlit keyboard, for intrusion detection",
+      "imageUrl": "/projects/apt-detection.jpg",
+      "imageHint": "network security"
     },
     {
       "id": "project-research-3",
-      "description": "An illustration of image captioning",
-      "imageUrl": "https://picsum.photos/seed/research3/600/400",
-      "imageHint": "image captioning"
+      "description": "A camera lens, for image captioning",
+      "imageUrl": "/projects/image-captioning.jpg",
+      "imageHint": "camera vision"
     },
     {
       "id": "project-research-4",
-      "description": "A blockchain wallet analytics concept",
-      "imageUrl": "https://picsum.photos/seed/research4/600/400",
+      "description": "Cryptocurrency market prices on a phone",
+      "imageUrl": "/projects/defi-wallet.jpg",
       "imageHint": "blockchain wallet"
     },
     {
       "id": "project-ai-5",
-      "description": "A real-time voice assistant interface",
-      "imageUrl": "https://picsum.photos/seed/ai5/600/400",
+      "description": "A studio microphone, for a real-time voice agent",
+      "imageUrl": "/projects/voice-agent.jpg",
       "imageHint": "voice assistant"
     },
     {
       "id": "project-ai-6",
-      "description": "A cinematic movie script concept",
-      "imageUrl": "https://picsum.photos/seed/ai6/600/400",
+      "description": "Film reels and projection equipment",
+      "imageUrl": "/projects/movie-script.jpg",
       "imageHint": "movie script"
     },
     {
-      "id": "project-ai-7",
-      "description": "A movie website interface",
-      "imageUrl": "https://picsum.photos/seed/ai7/600/400",
-      "imageHint": "movie website"
-    },
-    {
       "id": "project-ai-8",
-      "description": "A study notes and flashcards concept",
-      "imageUrl": "https://picsum.photos/seed/ai8/600/400",
+      "description": "A library of bookshelves, for study notes",
+      "imageUrl": "/projects/study-easy.jpg",
       "imageHint": "study notes"
     },
     {
-      "id": "project-ai-9",
-      "description": "A movie recommendation interface",
-      "imageUrl": "https://picsum.photos/seed/ai9/600/400",
-      "imageHint": "movie recommendation"
-    },
-    {
-      "id": "project-ai-10",
-      "description": "A music playlist concept",
-      "imageUrl": "https://picsum.photos/seed/ai10/600/400",
-      "imageHint": "music playlist"
-    },
-    {
       "id": "project-ai-11",
-      "description": "A football analytics concept",
-      "imageUrl": "https://picsum.photos/seed/ai11/600/400",
+      "description": "A football stadium pitch seen from the stands",
+      "imageUrl": "/projects/premier-league.jpg",
       "imageHint": "football analytics"
+    },
+    {
+      "id": "project-ai-3",
+      "description": "Browsing a product catalogue on a tablet",
+      "imageUrl": "/projects/product-discovery.jpg",
+      "imageHint": "product discovery"
     }
   ]
 }
