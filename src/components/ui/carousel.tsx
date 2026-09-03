@@ -111,6 +111,9 @@ const Carousel = React.forwardRef<
         return
       }
 
+      // Embla is an external system and this is the initial sync on subscribe,
+      // which is the case the rule cannot distinguish from a cascading render.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       onSelect(api)
       api.on("reInit", onSelect)
       api.on("select", onSelect)
