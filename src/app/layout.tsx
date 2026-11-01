@@ -3,6 +3,7 @@ import localFont from 'next/font/local';
 import './globals.css';
 import { cn } from '@/lib/utils';
 import { Toaster } from "@/components/ui/toaster"
+import { Analytics } from '@vercel/analytics/next';
 
 // Self-hosted via next/font so it is preloaded and swaps without layout shift.
 // Licence: free for personal use only (Letterara Studio) - commercial use needs
@@ -36,6 +37,7 @@ export default function RootLayout({
       <body className={cn("font-body antialiased bg-background text-foreground min-h-screen main-scrollbar-hide")}>
         {children}
         <Toaster />
+        <Analytics />
       </body>
     </html>
   );
